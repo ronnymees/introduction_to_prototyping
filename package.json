@@ -1,0 +1,30 @@
+{
+  "name": "fullstackdevelopment_eoict",
+  "version": "0.0.1",
+  "description": "Cursus Full Stack Development PBA Elektronica ICT",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronnymees/fullstackdevelopment_eoict"
+  },
+  "authors": {
+    "name": "Ronny Mees",
+    "email": "ronny.mees@vives.be"
+  },  
+  "license": "MIT",
+  "homepage": "https://github.com/ronnymees/fullstackdevelopment_eoict#readme",
+  "devDependencies": {
+    "vuepress": "^1.5.3",
+    "vuepress-plugin-zooming": "^1.1.8"
+  },
+  "dependencies": {
+    "@dovyp/vuepress-plugin-clipboard-copy": "^1.0.0-alpha.7"
+  }
+}
