@@ -316,8 +316,203 @@ do {
 } while (count > 0);
 ```
 
-<!-- TODO : Overname cursus eigen cursus -- Verder doen bij functies -->
+#### Functions
+
+We can also work with methods and functions in javascript:
+```js
+// method
+function sayMessage(message){
+   if(typeof(message)==='string') console.log(message);
+}
+// function
+function isEven(n) {
+  return ((n%2)===0);
+}
+// call the function
+let even=isEven(10);
+```
+In addition, we can also work with parameters here:
+```js
+// function with default parameters
+function sayMessage(message, times){
+  times=(typeof(times)!=='undefined') ? times:10;
+  if(typeof(message)==='string'){
+    for(let i=0;i<times;i++) console.log(message);
+  }
+}
+// function with the number of parameters of your choice, parameters go into the array 'arguments'
+function sayMessages(){
+  for (let i=0; i< arguments.length; i++) console.log(arguments[i]);
+}
+```
+Passing parameters also works on the principle of 'pass by value', i.e. the value of temporary is copied to a local variable. However, this is not the case for reference variables such as an object. There the principle of 'pass by reference' applies and there is a temporary variable that refers to the original.
+
+```js
+// pass by value example
+let message='hi';
+function changeMessage(message){
+  message="test";
+}
+changeMessage(message);
+console.log(message); // the result is 'hi'
+
+// pass by reference example
+let obj={msg:'hi'};
+function changeMessage(message){
+  message.msg="test";
+}
+changeMessage(obj);
+console.log(obj.msg); // the result is 'test'
+```
+
+You can also be creative with functions.
+
+```js
+// a function as a variable
+let sayMessage= function(message){ console.log(message); }
+// pass a function as a parameter
+window.setTimeout(sayMessage,5000,'Hi');
+// a function as part of an object
+let obj= { f: function(message){ console.log(message); } };
+obj.f('Hi');
+// an anonymous function (which has no name)
+numbers.forEach( function(i) { console.log("array contains ",i);})
+// an arrow function
+double = i => (i*2);
+```
+A function that is passed as a parameter to another function is called a **'callback function'**.
+
+#### Error handling
+
+Just like in C++ you can provide the error handling with `try` and `catch`.
+
+```js
+try {
+  // here goes the code you want to run
+} catch(e){
+  console.warn(e); // if an error occurs it will be sent to the console.
+}
+```
+
+#### Comments
+
+As always, it's good practice to comment your code.
+
+```js
+/**
+  * A block of comments
+  * across multiple lines
+  */
+
+// Comment on 1 single line.
+```
+
+#### Browser objects
+
+At the top level is the **browser object model** with information from the current browser window or tab.
+
+![image](./images/image7.png)
+
+A level lower you can find the **document object model** with information about the DOM structure of the page.
+
+![image](./images/image8.png)
+
+#### link to HTML elements
+
+There are a few possibilities to retrieve elements of an HTML page in javascript:
+
+* getElementById() : one element with a given id
+* getElementByName() : list of elements with a given name
+* getElementByTagName() : list of a certain type of elements
+* querySelectorAll() : list of elements that match a CSS selector
+* querySelector() : first element that satisfies a CSS selector
+
+#### Handle events
+
+Events are all events in a browser. e.g. the user clicks on something, an element gets the focus, ...
+
+**Older technology (supported by all browsers)**
+
+You can link one function to an event for a browser.
+
+![image](./images/image9.png)
+
+```js
+function checkUsername(){
+  // code...
+}
+
+let userName = document.getElementById('username');
+userName.onblur = checkUsername(); // if the focus of this element disappears then execute this function.
+```
+
+**Newer technology (only supported by newer browsers)**
+
+You can now link multiple functions to an event.
+
+![image](./images/image10.png)
+
+```js
+function checkUsername(){
+  // code...
+}
+
+let userName = document.getElementById('username');
+userName.addEventListener('blur', checkUsername, false);
+```
+
+An event is actually an object with properties.
+
+For example, you can find out in the handling function who the event owner is:
+
+```js
+function checkUsername(e){
+  let target = e.target; // owner of the event.
+  // code...
+}
+
+let userName = document.getElementById('username');
+userName.addEventListener('blur', checkUsername, false);
+```
+
+#### Good practices
+
+* If you provide manual indentation, always use either spaces or tabs, but don't combine them.
+* Provide your code with comments so that your code is easier to understand.
+* Place spaces:
+  * after a `,`, `:`, `;` but not before it
+  * after an 'if', 'for', 'while' and 'function'
+  * before and after an operator (`==`, `<`, `&&`, `+`, ...)
+* Avoid using `var` to define a variable
+
+#### Using objects as a kind of class
+
+Suppose we want a class **hotel** in which we want to store the name of the hotel, the number of rooms and the number of rooms booked.
+We also want a function that returns the rooms that are still available.
+
+Then we can write a constructor for this as follows:
+```js
+function hotel(name, rooms, booked){
+  this.name = name;
+  this.rooms = rooms;
+  this.booked = booked;
+  this.checkAvailability = function(){
+    return this.rooms - this.booked;
+  }
+}
+```
+and define the hotel as follows:
+
+```js
+let parkHotel = new hotel('Park',120,77);
+```
+if we now want to have the number of rooms still available, we write:
+
+```js
+let available = parkHotel.checkAvailability();
+```
 
 ## Typescript
 
+To be added...
 <!-- TODO : Nog aan te leren en uit te schrijven -->
