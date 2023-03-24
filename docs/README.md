@@ -21,7 +21,13 @@ During this course you will learn the basics of HTML5, CSS3, Javascript, Typescr
 
 ## Sources
 
-This work is the result of the knowledge of the writer, colleagues at VIVES University college and professionally relevant sources such as:
+This work is the result of the knowledge of the writer & colleagues at VIVES University college:
+
+* Ronny Mees
+* Nico De Witte
+* Sille Van Landschoot
+
+And professionally relevant sources such as:
 
 * To be added
 
