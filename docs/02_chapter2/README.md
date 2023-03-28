@@ -31,7 +31,75 @@ Let's take a closer look at one such tag:
 
 ### The basic structure
 
+What does the basic structure of a web page actually look like?
 
+When you start a new HTML document, the basic structure looks like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+</html>
+```
+
+:::tip 💡Tip
+In Visual Code just make a new .html file and type `html:5`
+:::
+
+Let's take a closer look at this.
+
+All HTML documents must start with a document type declaration `<!DOCTYPE html>`.
+
+The HTML document itself starts with `<html lang="...">` and ends with `</html>`. Here `lang="..."` is important for text reading software, otherwise it can sound quite strange :-).
+
+The HTML element `<head>` is a container that contains information about the page. Metadata is not shown on the page. The `<meta>` element is used to specify metadata such as the page description, search terms, author, ....
+
+For example:
+```html
+<meta charset="UTF-8">
+<meta name="description" content="Free Web tutorials">
+<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+<meta name="author" content="John Doe">
+<meta http-equiv="refresh" content="30">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+* The `<meta>` charset element indicates which character set is used.
+* The `<meta>` description element captures the description for the web page.
+* The `<meta>` keywords element determines search terms for the web page on search engines such as google.
+* The `<meta>` author element determines the author of the web page.
+* The `<meta>` refresh element specifies how much time the page will refresh itself.
+* The `<meta>` viewport element instructs the browser to take device width into account when displaying elements on the page.
+
+The visible part of the HTML document can be found between `<body>` and `</body>`.
+
+::: tip 💡Provide a readable HTML document
+
+**1. Use indents**
+
+You can add indents automatically in Visual Studio Code by choosing `format document` in the right mouse menu.
+It improves the readability of your HTML document.
+
+**2. Comment your code**
+
+Adding comments to your HTML document can provide more explanation for a certain piece of code, making it easier for the reader to understand what is happening.
+
+```html
+<!-- This is a comment line -->
+
+<!-- And this is
+a comment
+block -->
+```
+:::
 
 
 <!-- TODO : Overname cursus eigen cursus -->

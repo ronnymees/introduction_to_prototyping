@@ -29,7 +29,17 @@ This work is the result of the knowledge of the writer & colleagues at VIVES Uni
 
 And professionally relevant sources such as:
 
-* To be added
+* W3Schools ( let op met deze bron, is niet up to date en bevat veel fouten)
+* LinkedIn Learning
+* Youtube tutorials
+* Ferguson, R. (2019). Beginning JavaScript: The Ultimate Guide to Modern JavaScript Development.
+* Mozilla developer pagina
+* De github cursus van docent Rogier Van der Linde aan de hogeschool Odisee.
+* Blog van Matteo Duò op Kinsta i.v.m. responsive webdesign.
+* Blog van Michael J. Fordham op editorx i.v.m. cross-browser webdesign
+* Jon Duckett (2011). HTML & CSS: Design and build websites
+* Jon Duckett (2014). Javascript & Jquery: Interactive front-end web development
+* Jon Duckett (2022). PHP & MySQL: Server-side web development
 
 ## License
 
