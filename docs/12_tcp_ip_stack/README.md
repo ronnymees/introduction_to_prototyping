@@ -26,7 +26,9 @@ IPv6 is dealing with the long anticipated problem of the limited range of IPv4 a
 2^128 = 3.40 x 10^38 different ip addresses are possible with IPv6. On earth there are around 10^20 till 10^24 grains of sand. In the observable universe, there are around 10^24 stars. This means that every grain of sand or every star in the universe can have 100 trillion ip addresses...
 :::
 
-> Extra info: [Why Do We Need IP Adresses?](https://www.youtube.com/watch?v=iGPXkxeOfdk)
+> 🌐 Supporting learning material
+>
+> YouTube tutorial: [Why Do We Need IP Adresses?](https://www.youtube.com/watch?v=iGPXkxeOfdk)
 
 ### IP Routing
 
@@ -79,7 +81,9 @@ With the `tracert` command you can test and take a look at the different routers
 
 ![IMAGE](./images/image16.png)
 
-> Extra info: [IP Adresseses and the Internet](https://www.youtube.com/watch?v=L6bDA5FK6gs)
+> 🌐 Supporting learning material
+>
+> YouTube tutorial: [IP Adresseses and the Internet](https://www.youtube.com/watch?v=L6bDA5FK6gs)
 
 ## TCP - Transmission Control Protocol
 

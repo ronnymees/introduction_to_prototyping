@@ -16,11 +16,11 @@ module.exports = {
       {
         title: 'Introduction',
         children: [
-          '/01_history_and_evolution/README.md',
-          '/02_tcp_ip_stack/README.md',
-          '/03_client_server_model/README.md',
-          '/04_web_protocols/README.md',
-          '/05_internet_of_things/README.md',
+          '/11_history_and_evolution/README.md',
+          '/12_tcp_ip_stack/README.md',
+          '/13_client_server_model/README.md',
+          '/14_web_protocols/README.md',
+          '/15_internet_of_things/README.md',
         ]
       },{
         title: 'Frontend Webdesign',

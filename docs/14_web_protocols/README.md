@@ -116,7 +116,9 @@ The client processes the response and generates an output for the user
 
 ![IMAGE](./images/image28.png)
 
-> Extra info: [What Happens When You Click a Link?](https://www.youtube.com/watch?v=keo0dglCj7I)
+> 🌐 Supporting learning material
+>
+> YouTube tutorial: [What Happens When You Click a Link?](https://www.youtube.com/watch?v=keo0dglCj7I)
 
 ## DNS - Domain Name System
 

