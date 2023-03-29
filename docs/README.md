@@ -11,11 +11,11 @@ During this course you will learn the basics of HTML5, CSS3, Javascript, Typescr
 
 ## Content
 
-1. Introduction
-2. Frontend webdesign
-3. Frontend scripting
-4. Backend databases
-5. Backend scripting
+1. Introduction to web development
+2. Frontend webdesign with HTML and CSS
+3. Frontend scripting with Javascript
+4. Backend databases with SQL
+5. Backend scripting with Express.js
 6. Frontend development
 7. Security
 

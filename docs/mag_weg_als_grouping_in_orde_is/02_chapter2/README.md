@@ -101,6 +101,86 @@ block -->
 ```
 :::
 
+### HTML elements
+
+Which elements do we now have available to structure our page?
+
+#### Text
+
+**Header**
+
+You can indicate a header with the `<h1>` to `<h6>` tags. Where the `<h1>` is the most important heading and the `<h6>` is the least important.
+
+```html
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+```
+
+::: warning 🔥Note
+Headers are used by search engines to determine the structure of your web page. You use them exclusively for that purpose and not to make certain text larger or bold.
+:::
+
+**Paragraph**
+
+You can recognize a paragraph by the `<p>` element.
+
+```html
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+```
+
+::: warning 🔥Note
+In your html code you can add extra spaces or lines, but the browser will ignore them and display the text as a long continuous text.
+If you want a new line in a paragraph you can use `<br>`.
+:::
+
+**Formatting**
+
+All text in an html document can be formatted by the following elements:
+
+* `<b>` - bold
+* `<strong>` - important
+* `<i>` - italics
+* `<em>` - emphasized
+* `<mark>` - marked
+* `<small>` - small
+* `<del>` - deleted
+* `<ins>` - added
+* `<sub>` - subscript
+* `<sup>` - superscript
+
+**Special characters**
+
+Some commonly used characters:
+
+* `&copy` - copyright
+* `&reg` - registered
+* `&euro` - euros
+
+::: warning Note
+Do not use `-` in html text but rather `&ndash`, `&mdash` or `&minus` depending on the context.
+:::
+
+**Quotes**
+
+If you want to quote something from a book, magazine or website, you can use `<q>` for a short quote or `<blockquote>` for part of a quote.
+
+```html
+<p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+
+<blockquote cite="http://www.worldwildlife.org/who/index.html">
+For 50 years, WWF has been protecting the future of nature.
+The world's leading conservation organization,
+WWF works in 100 countries and is supported by
+1.2 million members in the United States and
+close to 5 million globally.
+</blockquote>
+```
+
 
 <!-- TODO : Overname cursus eigen cursus -->
 
