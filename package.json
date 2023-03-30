@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
+    "dev": "vuepress dev docs",
     "build": "vuepress build docs"
   },
   "repository": {
@@ -17,14 +17,12 @@
   "authors": {
     "name": "Ronny Mees",
     "email": "ronny.mees@vives.be"
-  },  
+  },
   "license": "MIT",
   "homepage": "https://github.com/ronnymees/fullstackdevelopment_eoict#readme",
   "devDependencies": {
-    "vuepress": "^1.5.3",
-    "vuepress-plugin-zooming": "^1.1.8"
-  },
-  "dependencies": {
-    "@dovyp/vuepress-plugin-clipboard-copy": "^1.0.0-alpha.7"
+    "@vuepress/plugin-container": "^2.0.0-beta.61",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.61",
+    "vuepress": "^2.0.0-beta.61"
   }
 }
