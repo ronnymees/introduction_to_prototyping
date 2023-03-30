@@ -18,6 +18,7 @@ module.exports = {
     sidebar: [
       {
         text: 'Introduction',
+        collapsible: true,
         children: [
           '/11_history_and_evolution/README.md',
           '/12_tcp_ip_stack/README.md',
@@ -27,6 +28,7 @@ module.exports = {
         ]
       },{
         text: 'Frontend Webdesign',
+        collapsible: true,
         children: [
           '/21_development_tools/README.md',
           '/22_webstructure_html/README.md',
@@ -37,6 +39,7 @@ module.exports = {
         ]
       },{
         text: 'Frontend Scripting',
+        collapsible: true,
         children: [
           '/31_communication/README.md',
           '/32_frontend_scripting_js/README.md',
@@ -44,6 +47,7 @@ module.exports = {
         ]
       },{
         text: 'Backend databases',
+        collapsible: true,
         children: [
           '/41_databases/README.md',
           '/42_setup_mysql/README.md',
@@ -54,6 +58,7 @@ module.exports = {
         ]
       },{
         text: 'Backend Scripting',
+        collapsible: true,
         children: [
           '/51_intro_express/README.md',
           '/52_rest_api_crud/README.md',
@@ -61,6 +66,7 @@ module.exports = {
         ]
       },{
         text: 'Frontend Development',
+        collapsible: true,
         children: [
           '/61_frontend_vue/README.md',
           '/62_axios/README.md',
@@ -68,10 +74,11 @@ module.exports = {
         ]
       },{
         text: 'Security',
+        collapsible: true,
         children: [
           '/71_secure_connection/README.md',
           '/72_login/README.md',
-        ]
+        ],
       }
     ],
     sidebarDepth: 1,
