@@ -17,6 +17,12 @@ module.exports = {
     ],
     sidebar: [
       {
+        text: 'Development Tools',
+        collapsible: true,
+        children: [
+          '/01_developmenttools/README.md',          
+        ]
+      },{
         text: 'Introduction',
         collapsible: true,
         children: [
@@ -30,7 +36,7 @@ module.exports = {
         text: 'Frontend Webdesign',
         collapsible: true,
         children: [
-          '/21_development_tools/README.md',
+          // '/21_development_tools/README.md',
           '/22_webstructure_html/README.md',
           '/23_webstyling_css/README.md',
           '/24_responsive_styling/README.md',

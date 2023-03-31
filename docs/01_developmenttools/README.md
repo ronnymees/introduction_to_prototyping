@@ -1,4 +1,4 @@
-# Developmenttools
+# Development Tools
 
 ## Visual Code
 
@@ -10,6 +10,17 @@ After installation you also add the live server extension. For more information 
 
 ![IMAGE](./images/image1.png)
 
+## Node.js
+
+Node.js is an open-source, cross-platform Javascript runtime environment.
+
+Just install the current version from [nodejs.org](https://nodejs.org/en)
+
 ## Postman
 
-<!-- TODO: add info for POSTMAN -->
+Postman is a API platform for testing your API applications. 
+
+You can download the app from [Postman](https://www.postman.com/downloads/)
+
+![IMAGE](./images/image2.png)
+

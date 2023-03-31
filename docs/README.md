@@ -40,6 +40,7 @@ And professionally relevant sources such as:
 * Jon Duckett (2011). HTML & CSS: Design and build websites
 * Jon Duckett (2014). Javascript & Jquery: Interactive front-end web development
 * Jon Duckett (2022). PHP & MySQL: Server-side web development
+* Bezkoder.com
 
 ## License
 

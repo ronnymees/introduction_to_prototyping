@@ -1,4 +1,4 @@
-# Build REST-API's for CRUD interactions with a dababase
+# Build REST-API's for CRUD interactions
 
 First we need to decide what API End Points we will be using:
 
