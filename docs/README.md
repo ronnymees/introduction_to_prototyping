@@ -41,6 +41,9 @@ And professionally relevant sources such as:
 * Jon Duckett (2014). Javascript & Jquery: Interactive front-end web development
 * Jon Duckett (2022). PHP & MySQL: Server-side web development
 * Bezkoder.com
+* Greg Lim (2022). Beginning Vue3 Development
+* Heitor Ramon Ribeiro (2020). Vue.js 3 Cookbook
+* Maya Shavin & Raymond Camden (2023). Frontend Development Projects with Vue.js 3
 
 ## License
 

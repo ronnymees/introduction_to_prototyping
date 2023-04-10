@@ -6,9 +6,19 @@ Because HTML is actually just text, you can use your favorite text editor such a
 
 We use Visual Studio Code to build our projects. If it is not already installed on your system, go to the [Visual Studio Code website](https://code.visualstudio.com/) and download the version for your system. 
 
-After installation you also add the live server extension. For more information on how to do this, see the [Visual Studio Code User's Guide](https://code.visualstudio.com/docs/editor/extension-marketplace).
-
 ![IMAGE](./images/image1.png)
+
+### Extensions
+
+Information about installing extensions can be found at the  [Visual Studio Code User's Guide](https://code.visualstudio.com/docs/editor/extension-marketplace).
+
+#### Live server
+
+Launches a local development server with live reload feature for static & dynamic pages.
+
+#### TypeScript Vue Plugin (Volar)
+
+Volar gives you syntax highlighting, TypeScript support, and intellisense for template expressions and component props within Vue components.
 
 ## Node.js
 
