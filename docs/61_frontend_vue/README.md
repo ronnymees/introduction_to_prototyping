@@ -242,7 +242,252 @@ Now we want to loop true this data and display it:
 Note that we have provided a *key* attribute (*product.id*) for our product items. The key (product.id) tells Vue how to figure out wich DOM node to change when *products* update. Thus, when dynamically editing the list, and removing/adding elements, you should always pass an identifier in list to prevent issues.
 :::
 
-## BootStrap, V-bind, Props, Data and Events
+## Bootstrap, V-bind, Props, Data and Events
+
+### Bootstrap
+
+Instead of creating our own style in a style.css file, we will be using Bootstrap to style our page.
+
+To get started with Bootstrap, we need to reference bootstrap.css in our `public/index.html`. Go to [getbootstrap.com](https://getbootstrap.com/) and scroll down to the 'Include via CDN' section.
+
+![IMAGE](./images/image4.png)
+
+Copy the bootstrap.min.css stylesheet link and the bootstrap.bundle.min.js Javascript link, then paste them into your `<head>` of *index.html*
+
+```html
+...
+<head>
+    ...
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+   ...
+</head> 
+```
+
+:::tip 💡Note
+Note that we added the attribute `defer` to the Javascript link to make sure it's loads after the DOM is generated.
+
+*The link may change depending on which version of Bootstrap is running.*
+:::
+
+To test this, we add a button to our App.vue:
+
+``` vue
+<template>
+    <button type="button" class="btn btn-primary">Primary</button>
+</template>
+```
+
+### V-bind
+
+What if we want to disable the button based on some condition.
+
+``` vue
+<script>
+    export default(){
+        data(){
+            return{
+                isValid: true
+            }
+        }
+    }
+</script>
+
+<template>
+    <button type="button" class="btn btn-primary" v-bind:disabled="!isValid">Primary</button>
+</template>
+```
+
+So, when *isValid = false* the *disabled* CSS class will be applied, making the button unclickable.
+
+The *v-bind* directive keeps *disabled* in sync with the component's *isValid* property. We will be using v-bind so many times that is has a dedicated shorthand syntax ':'.
+
+``` vue
+<button type="button" class="btn btn-primary" :disabled="!isValid">Primary</button>
+```
+
+:::tip 💡Note
+Directives with prefix `v-*` indicate they are special attributes provided by Vue. They apply special reactive behavior to the rendered DOM.
+:::
+
+### Props
+
+We can pass data into a component by using 'props'. For example, suppose we want to display a list of products with their rating. We will need to pass the rating value to our rating components. We can do something like: `<Rating rating="4"/>` to display a rating of 4 stars.
+
+To do so, in *src/components*, create a new file Rating.vue with the below code.
+
+``` vue
+<script>
+    export default{
+        props: ['rating']
+    }
+</script>
+<template>
+    <h1>Rating: {{rating}}</h1>
+</template>
+```
+
+Our Rating component must declare a 'rating' prop using the *props* option. When a parent component renders `<Rating rating="4"/>`, the *rating* attribute will contain the value of 4. We then render the rating value in *template*.
+
+In `src/App.vue`, replace the code with:
+
+``` vue
+<script>
+    import Rating from './components/Rating.vue';
+
+    export default{
+        components:{
+            Rating
+        }
+    }
+</script>
+
+<template>
+    <div>
+        <Rating rating='1' />
+        <Rating rating='2' />
+        <Rating rating='3' />
+        <Rating rating='4' />
+        <Rating rating='5' />
+    </div>
+</template>
+```
+
+In App.vue, we call the Rating component five times with a different *rating* as the props.
+
+### Improving the Look
+
+We will improve the look of our rating component by showing rating stars like what we see on online shops. For this we use Bootstrap Icons.
+To use Bootstrap icons, we have to install this in the terminal:
+
+``` bash
+npm i bootstrap-icons
+```
+
+And include the icon fonts stylesheet in our `<head>` of index.html.
+
+See [icons.getbootstrap.com](https://icons.getbootstrap.com/), in the CDN section for the link.
+
+``` html
+<head>
+   ...
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"> 
+   ...
+</head> 
+```
+
+Now we modify our Rating component as follows:
+
+``` vue
+<script>
+    export default{
+        props: ['rating']
+    }
+</script>
+<template>
+    <h1>Rating: {{rating}}</h1>
+    <i v-if="rating >=1" class="bi bi-star-fill"></i>
+    <i v-else class="bi bi-star></i>
+    <i v-if="rating >=2" class="bi bi-star-fill"></i>
+    <i v-else class="bi bi-star></i>
+    <i v-if="rating >=3" class="bi bi-star-fill"></i>
+    <i v-else class="bi bi-star></i>
+    <i v-if="rating >=4" class="bi bi-star-fill"></i>
+    <i v-else class="bi bi-star></i>
+    <i v-if="rating >=5" class="bi bi-star-fill"></i>
+    <i v-else class="bi bi-star></i>
+</template>
+```
+
+We use the *v-if* directive to conditionally render a filled star if *rating* is >= a value. Else, render a normal (empty) star with the *v-else* couterpart.
+
+### Data in a Vue Component
+
+Every component in addition to having its own template, styles and logic, manages its own reactive data using the *data* option. For example, Rating component can have a reactive data variable *rating* to store the rating value.
+
+``` vue
+<script>
+    export default{
+        props: ['rating'],
+        data(){
+            return{
+                rating: 0
+            }
+        }
+    }
+</script>
+```
+
+Whenever the reactive data changes, the UI is re-rendered to reflect those changes. Now, we have an issue in that we have a *rating* prop and also *rating* variable in the state. Let's rename the *rating* prop to *initialRating* to better reflect its purpose. Just change *rating* into *initialRating* in App.vue.
+
+Note that props cannot be mutated. In Rating, our prop *initialRating* is used to pass in an initial rating value from the parent. We then assign the value of *initialRating* to the rating state variable in *data()*:
+
+``` vue
+<script>
+    export default{
+        props: ['rating'],
+        data(){
+            return{
+                rating: this.initialRating
+            }
+        }
+    }
+</script>
+```
+
+### Handling Events
+
+Next, we want to assign a rating depending on which star the user has clicked. To do so, our component needs to handle the click event. In Vue, you can define a listener for a DOM event in the template using the *v-on* directive (typically shortened to the @ symbol).
+
+First we need a methode that will handle the action for the event:
+
+``` vue{8,9,10,11,12,13}
+<script>
+    export default{
+        props: ['rating'],
+        data(){
+            return{
+                rating: this.initialRating
+            }
+        },
+        methods:{
+            assignRating(rating){
+                this.rating = rating
+            }
+        }
+    }
+</script>
+```
+
+Next we change our template code to handle the event:
+
+``` vue{3,6,7,10,11,14,15,18,19,22}
+<template>
+    <h1>Rating: {{rating}}</h1>
+    <span v-on:click="assignRating(1)>
+        <i v-if="rating >=1" class="bi bi-star-fill"></i>
+        <i v-else class="bi bi-star></i>
+    </span>
+    <span v-on:click="assignRating(2)>
+        <i v-if="rating >=2" class="bi bi-star-fill"></i>
+        <i v-else class="bi bi-star></i>
+    </span>
+    <span v-on:click="assignRating(3)>
+        <i v-if="rating >=3" class="bi bi-star-fill"></i>
+        <i v-else class="bi bi-star></i>
+    </span>
+    <span v-on:click="assignRating(4)>
+        <i v-if="rating >=4" class="bi bi-star-fill"></i>
+        <i v-else class="bi bi-star></i>
+    </span>
+    <span v-on:click="assignRating(5)>
+        <i v-if="rating >=5" class="bi bi-star-fill"></i>
+        <i v-else class="bi bi-star></i>
+    </span>
+</template>
+```
+
+## Working with Components
 
 
 <!-- TODO : Nog te leren en uit te werken -->
