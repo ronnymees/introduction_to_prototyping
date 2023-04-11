@@ -23,7 +23,7 @@ Below is an example of a product component that display's a single string contai
 //Logic section
 <script>
     export default{
-        date(){
+        data(){
             return{
                 name = 'bag';
             }
@@ -119,6 +119,130 @@ Outside the *src* folder we find:
 
 Our Single Page Application loaded in the browser. Our *App.vue* component will be injected into this page.
 
+## Creating and using components
+
+Most likely you don't want to stick with the "hello world" Vue application we nog have. Let's remove the default existing components *HelloWorld.vue*, *TheWelcome.vue*, *WelcomeItem.vue* as well as the *icons* folder.
+
+### Creating our First Component
+
+In the *components* folder create a new file *Products.vue*.
+
+:::tip 💡Tip
+We use the UpperCamelCase naming comvention.
+:::
+
+We start with the basic sections in our component:
+
+``` vue
+//Logic section
+<script>
+    
+</script>
+
+// Template section
+<template>
+    <h1>Products</h1>
+</template>
+``` 
+
+So, basicly our component outputs the text "Products".
+
+### Importing and Using our Created Component
+
+As we already know, a component can be used by other components. Let's import and add `<Products />` to `/src/App.vue` by replacing the existing code with:
+
+``` vue
+<script>
+    import Products from './components/Products.vue';
+
+    export default{
+        components:{
+            Products
+        }
+    }
+</script>
+
+<template>
+    <Products />
+</template>
+```
+
+We import our *Products.vue* component by there **relative path**, register it under the *components* option to make it available to App and then render the *Products component* in template.
+
+### Options API
+
+With Options API, we define a component's logic using options e.g. *data*, *methods* and *mounted*.
+
+For now we will be looking at *data()*.
+
+Suppose we have a product with a *username* and *category*, we can use *data()* to define this.
+*data()* returns an object containing all data we want Vue to work with.
+
+``` vue
+<script>
+    export default{
+        data(){
+            return{
+                username: 'John',
+                catergory: 'Books'
+            }
+        }
+    }
+</script>
+```
+
+In our template we can use this data with our curly brackets.
+
+``` vue
+<template>
+    <h1>Products: {{category}} by {{username}}</h1>
+</template>
+```
+
+### Displaying a List with Loops
+
+In most cases we will have a list of data to be displayed, let's change our data option as follows:
+
+``` vue
+<script>
+    export default{
+        data(){
+            return{
+                products:[
+                    {
+                        id: "1",
+                        name: "Books"
+                    },
+                    {
+                        id: "2",
+                        name: "Pencils"
+                    },
+                    {
+                        id: "3",
+                        name: "Paper"
+                    }
+                ]                
+            }
+        }
+    }
+</script>
+```
+
+Now we want to loop true this data and display it:
+
+``` vue
+<template>
+    <div v-for='product in products' :key='product.id'>
+        <h3>{{product.id}}: {{product.name}}</h3>
+    </div>
+</template>
+```
+
+:::tip 💡Note
+Note that we have provided a *key* attribute (*product.id*) for our product items. The key (product.id) tells Vue how to figure out wich DOM node to change when *products* update. Thus, when dynamically editing the list, and removing/adding elements, you should always pass an identifier in list to prevent issues.
+:::
+
+## BootStrap, V-bind, Props, Data and Events
 
 
 <!-- TODO : Nog te leren en uit te werken -->
