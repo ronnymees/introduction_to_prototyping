@@ -6,7 +6,7 @@ A Vue application is made up of independent and reusable components. For example
 
 Components can also contain other components. For example, in product component where we display a list of products, we do so using multple product components. Also, in each product component, we can have a rating component.
 
-<!-- TODO : fig 3 pg 9 invoegen -->
+![IMAGE](./images/image1.png)
 
 The benefit of such an architecture helps us to break up a large application into smaller managable components. Plus, we can reuse components within the application or even in a different application.
 
@@ -82,11 +82,11 @@ npm run dev
 
 This creates a new project in the `<your-project-name>` folder, installs its dependencies (see later) and starts a *dev server* on `http://localhost:5173`.
 
-<!-- TODO : fig 4 & 5 pg 13 invoegen -->
+![IMAGE](./images/image2.png)
 
 When you open the project folder in VSCode editor, you will find a couple of files:
 
-<!-- TODO : fig 7 pg 14 invoegen -->
+![IMAGE](./images/image3.png)
 
 Our app lives in the *src* folder. Any other files outside this folder are meant to support building your app.
 
@@ -96,9 +96,13 @@ In the *src* folder we find:
 
 *main.js* is the entry point for our app where we initialize and bring in the main App component:
 
-<!-- TODO : code importeren zie pg 15 -->
 ``` vue
-To be added
+import { createApp } from 'vue'
+import App from "./App.vue'
+
+import './assets/main.css'
+
+createApp(App).mount('#app')
 ```
 
 A Vue application starts by creating a new application instance with the *createApp* function. We import and use the root component App from ./App.vue (see later). 
@@ -242,7 +246,7 @@ Now we want to loop true this data and display it:
 Note that we have provided a *key* attribute (*product.id*) for our product items. The key (product.id) tells Vue how to figure out wich DOM node to change when *products* update. Thus, when dynamically editing the list, and removing/adding elements, you should always pass an identifier in list to prevent issues.
 :::
 
-## Bootstrap, V-bind, Props, Data and Events
+## Modifying components
 
 ### Bootstrap
 
@@ -487,7 +491,257 @@ Next we change our template code to handle the event:
 </template>
 ```
 
-## Working with Components
+### Adding our own styles
 
+We can further modify our components with our own CSS styles. These *styles* are scoped only to your component. They won't effect to the outer DOM or other components.
 
-<!-- TODO : Nog te leren en uit te werken -->
+To illustrate, suppose we want our filled stars to be orange, we can create a variable for the color:
+
+``` vue{7}
+<script>
+    export default{
+        props: ['rating'],
+        data(){
+            return{
+                rating: this.initialRating,
+                color: 'orange'
+            }
+        }
+    }
+</script>
+```
+
+And then add a *style* binding:
+
+``` vue{3}
+<template>
+    <h1>Rating: {{rating}}</h1>
+    <span :style="{color: color}" v-on:click="assignRating(1)>
+        <i v-if="rating >=1" class="bi bi-star-fill"></i>
+        <i v-else class="bi bi-star></i>
+    </span>
+...
+```
+
+## Building Forms
+
+To explain how to implement forms with validation logic in Vue, we will implement a login form that takes in fields *email* and *password*.
+
+### Create an Initial Form Template
+
+Create a new file *UserForm.vue* in our `src/components` folder and add the following code:
+
+``` vue
+<script>
+    export default{
+
+    }
+</script>
+<template>
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control">            
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control">
+        </div>        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</template>
+```
+
+We can try running the form by rendering *UserForm* in App.vue:
+
+``` vue
+<script>
+    import UserForm from './components/UserForm.vue';
+
+    export default{
+        components:{
+            UserForm
+        }
+    }
+</script>
+
+<template>
+    <UserForm />
+</template>
+```
+
+### Form Input Bindings
+
+In Vue forms, we use the *v-model* directive to sync (two-way bind) the form input elements with the component's *data* property.
+
+Modify your code as follows:
+
+``` vue{3,4,5,6,15,19}
+<script>
+    export default{
+        data(){
+            return{
+                email: '',
+                password: ''
+            }
+        }
+    }
+</script>
+<template>
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input v-model="email" type="email" class="form-control">            
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input v-model="password" type="password" class="form-control">
+        </div>        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</template>
+```
+
+### Showing Specific Validation Errors
+
+Currently, we have the default email validation. But we should be albe to have specific validation errors depending on the input given, for example "Email is required", or "Email should be a minimum of six characters" and show corresponding validation error alerts when a user submits the form.
+
+To show specific validation errors, we declare two data variables to store our email and password error messages, and two booleans to state if email and password fields are valid. In UserForm.vue, add the following code:
+
+```vue{7,8,9,10}
+<script>
+    export default{
+        data(){
+            return{
+                email: '',
+                password: '',
+                validEmail: false,
+                validPassword: false,
+                emailMessage: '',
+                passwordMessage: ''
+            }
+        },    
+</script>
+...
+```
+
+To handle form submission, we define a *onSubmit* handling method. We then bind *onSubmit* to the *submit* event handler in the *form* element.
+
+```vue{6,7,8,9,10,11,16}
+<script>
+    export default{
+        data(){
+            ...
+        },
+        methods:{
+            onSubmit(){
+                if(this.validEmail && this.validPassword){
+                    alert('Email: ' + this.email + '\nPassword: ' + this.password);
+                }
+            }
+        }
+    }
+</script>
+<template>
+    <form @submit.prevent="onSubmit">
+...    
+```
+
+:::tip 💡Note
+Note that we specify *@submit.prevent* in the `<form>` tag to prevent the submit event from reloading the page when we send the contents of the form.
+:::
+
+In a normal app, we will want to send the form to some external API e.g. login. Before we send the network request in onSubmit, we want to perform some client-side validation.
+
+```vue
+<script>
+...
+        methods:{
+            onSubmit(e){
+                // Validation Email
+                this.validEmail = false;
+                if(this.email.lenght < 6 ) {
+                    this.emailMessage = "Email should be minimum 6 characters";
+                }
+                else if(this.email.indexOf(' ') >= 0){
+                    this.emailMessage = "Email cannot contain spaces";
+                }
+                else {
+                    this.emailMessage = '';
+                    this.validEmail = true;
+                }
+                // Validation password
+                this.validPassword = false;
+                if(this.password.lenght < 6 ) {
+                    this.passwordMessage = "Password should be minimum 6 characters";
+                }
+                else if(this.password.indexOf(' ') >= 0){
+                    this.passwordMessage = "Password cannot contain spaces";
+                }
+                else {
+                    this.passwordMessage = '';
+                    this.validPassword = true;
+                }
+                // Displaying result
+                if(this.validEmail && this.validPassword){
+                    alert('Email: ' + this.email + '\nPassword: ' + this.password);
+                }
+                else {
+                    alert(this.emailMessage);
+                }
+            }
+        }
+    }
+</script>
+...    
+```
+
+### Showing Validation Error Messages
+
+Now, if we enter a invalid email address or password, our form doesn't submit because of the validation checks we have added in. But we should be showing validation errors to the user for her to correct her input.
+
+We will use the *Alert* component from Bootstrap to provide feedback messages.
+
+```vue{8,9,10,15,16,17}
+...
+<template>
+    <form @submit.prevent="onSubmit">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input v-model="email" type="email" class="form-control">            
+        </div>
+        <div v-if="emailMessage.lenght > 0" class="alert alert-danger" role="alert">
+            {{ emailMessage }}
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input v-model="password" type="password" class="form-control">
+        </div>
+        <div v-if="passwordMessage.lenght > 0" class="alert alert-danger" role="alert">
+            {{ passwordMessage }}
+        </div>        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</template>
+```
+
+### Clearing the Fields upon Succesful Submit
+
+Currently, after submitting our form, the user-entered values in the fields remain. They should be cleared after submission. To do so, in onSubmit, after succesful validation, we clear the email and password state and also set validEmail and validPassword to false:
+
+```vue
+<script>
+...
+                if(this.validEmail && this.validPassword){
+                    this.email = '';
+                    this.password = '';
+                    this.validEmail = false;
+                    this.validPassword = false;
+                }
+                else {
+                    alert('Email: ' + this.email + '\nPassword: ' + this.password);
+                }
+...
+</script>
+...
+```
