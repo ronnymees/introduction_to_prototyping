@@ -76,7 +76,8 @@ module.exports = {
         children: [
           '/61_frontend_vue/README.md',
           '/62_restfull_apis/README.md',
-          '/63_vuetify/README.md',
+          '/63_crud/README.md',
+          '/64_vuetify/README.md',
         ]
       },{
         text: 'Security',
