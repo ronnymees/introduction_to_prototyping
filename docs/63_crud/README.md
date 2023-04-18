@@ -1,8 +1,8 @@
-# Perform CRUD actions with our backend 
+# Learning project: To-Do C.R.U.D. App
 
-We will be learning these CRUD actions by building a app for ToDo's.
+We will be learning the basic CRUD actions by building an app for ToDo's.
 
-## Create new project
+## Create a new project 'VueToDo'
 
 First we will create a new project;
 
@@ -20,7 +20,11 @@ cd VueToDo
 npm install
 ```
 
-## Fake data
+## Frontend without using actual API
+
+First we will be developing the App with Fake data end without the use of API calls to a backend service.
+
+### Fake data
 
 For now, we will have some fake data in our App.vue to define our inital *to-dos*. Later, we will implement getting data from a REST API.
 
@@ -64,7 +68,7 @@ For now, we will have some fake data in our App.vue to define our inital *to-dos
 </template>
 ```
 
-## ToDoList component
+### ToDoList component
 
 In `src/components` remove all the folders and files, then create a new file *ToDoList.vue* to list our todo's with the following code:
 
@@ -105,7 +109,7 @@ Before we can render our app we still need to import our ToDoList component into
 </template>
 ```
 
-## Styling our ToDoList
+### Styling our ToDoList
 
 Our list of todos currently looks rather plain. Let's apply some styling from Bootstrap. We will use the Table component again to list our todos in a table. (Remember to include the Bootstrap CDN in index.html)
 
@@ -142,7 +146,7 @@ In our *ToDoList* component add the following code:
 </template>
 ```
 
-## Removing a Todo
+### Removing a Todo
 
 Let's see how to remove a todo. We want to remove a todo upon clicking on 'Delete'. In the delete *td*, add a Button with it's *on:click* handler:
 
@@ -209,7 +213,7 @@ Next we handle the 'delete-todo' event in App.vue:
 We listen to the 'delete-todo' event  in the parent and specify a listener method, *deleteToDo* to handle the event.
 We implement the delete logic in *deleteToDo*. *todos.filter* checks for each element and filters for only *todo* objects whose id is not equal to the id of the todo te be deleted.
 
-## Adding a Todo
+### Adding a Todo
 
 To let users create a todo, we will have a form on the top of our *ToDoList* component.
 
@@ -311,7 +315,7 @@ Next we need to handle the 'add-todo' event in App.vue:
 </template>
 ```
 
-## Editing a Todo
+### Editing a Todo
 
 Next, we want to implement editing our to-dos. A user will click on the 'Edit' of the todo row she wishes to edit. That todo text will then appear in the form field for her to edit.
 
@@ -546,6 +550,227 @@ We next handle the event in App.vue:
         <ToDoList : todos="todos" @delete-todo="deleteToDo" @edit-todo="handleEdit" />
     </div>
 </template>
+```
 
+## Connecting to an API to persist data
+
+We have made progress in our To-do app. But our data is not yet persistent. When we reload our application, all the changes we have done to our data are gone. Now we will connect to an API to enable persistency in create, read, update and delete todos.
+
+### Setting up a mock API 
+
+To quickly set up a mock API, we will use *json-server* which makes it easy to set up JSON API's for use in demos and proof of concepts.
+
+Open a new terminal in the folder containing your Vue projects and run:
+
+```bash
+npm install -g json-server
+```
+
+Now create a new folder called *backendapp* and prepare a *todos.json* file which contains the following:
+
+```json
+{
+    "todos": [
+                {
+                    id:1,
+                    text: "finishing writing Full Stack Development course",
+                    complete: false,
+                    date: "Mon Apr 17 2023",
+                    dateCompleted: false
+                },
+                {
+                    id:2,
+                    text: "Attend to the garden",
+                    complete: false,
+                    date: "Mon Apr 24 2023",
+                    dateCompleted: false
+                },
+                {
+                    id:3,
+                    text: "Buy present for daughters birthday",
+                    complete: false,
+                    date: "Mon Apr 11 2023",
+                    dateCompleted: false
+                }
+            ]
+}
+```
+
+These are similar to the todos we have in App.vue
+
+Now start the backend server by opening a terminal in the folder that contains this *todos.json* file and run the command:
+
+```bash
+json-server -p 4000 todos.json
+```
+
+This will run a mock REST API server in your local machine at the endpoint `http://localhost:4000/todos` that will return an array of todos.
+
+### Fetch Initial App Data
+
+We create a new method fetchTodos. In it, we fetch with the endpoint to retrieve data from the API and return the results. Because we use await on fetch, we need to specify async at the declaration. We use created to retrieve data from the endpoint when the component is created.
+
+
+```vue{12,15,16,31,32,33,34,35}
+<script>
+    ...
+    export default{
+        components:{
+            ...
+        },
+        data(){
+            return{
+                todos:[],
+                editMode: false,
+                editTodo: null,
+                endpoint: "http://localhost:4000/todos/"
+            }
+        },
+        async created(){
+            this.todos = await this.fetchTodos()
+        },
+        methods:{
+            deleteTodo(todoId){
+                ...
+            },
+            AddTodo(todo){
+                ...
+            },
+            handleEdit(todo){
+                ...
+            },
+            submitEdit(editedTodo){
+                ...
+            },
+            async fetchTodo(){
+                const res = await fetch(this.endpoint);
+                const data = await res.json();
+                return data;
+            }
+        }
+    }
+</script>
+...
+```
+
+### Delete Request to Remove Todos
+
+To delete a todo, we need to get the specific URL for a todo item. We get that by appending the *todo.id* to the endpoint e.g. ´http://localhost:4000/todos/1´.
+
+So now we change our *deleteTodo* method as follows:
+```vue{6,7,8,9,10,11,12}
+<script>
+    ...
+    export default{
+        ...
+        methods:{
+            async deleteTodo(todoId){
+                if(confirm('Are you sure?')){
+                    const res = await fetch(this.endpoint+todoId,{method: 'DELETE'});
+                    res.status === 200 ? 
+                        (this.todos = this.todos.filter((todo) => todo.id !== todoId)) :
+                        alert('Error deleting todo');
+                }
+            },
+            AddTodo(todo){
+                ...
+            },
+            handleEdit(todo){
+                ...
+            },
+            submitEdit(editedTodo){
+                ...
+            },
+            async fetchTodo(){
+                ...
+            }
+        }
+    }
+</script>
+...
+```
+
+### Post Request to Add Todos
+
+fetch now requires two parameters, the first is the endpoint, the second is the object containing the data we want to send to the server.
+
+```vue{9,10,11,12,13,14,15,16,17,18}
+<script>
+    ...
+    export default{
+        ...
+        methods:{
+            async deleteTodo(todoId){
+                ...
+            },
+            async AddTodo(todo){
+                const res = wait fetch(this.endpoint, {
+                    method: 'POST',
+                    headers: '{
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(todo)
+                });
+                const data = await res.json()
+                this.todos = [...this.todos,data]
+            },
+            handleEdit(todo){
+                ...
+            },
+            submitEdit(editedTodo){
+                ...
+            },
+            async fetchTodo(){
+                ...
+            }
+        }
+    }
+</script>
+...
+```
+
+Because our backend server now takes care of the unique Id we can remove that line in AddTodo.vue: ~~id: Math.floor(Math.random() * 100000),~~
+
+### Patch Request to Update Todos
+
+Finaly we update our submitEdit method in a simalar way:
+
+```vue{15,16,17,18,19,20,21,22,25}
+<script>
+    ...
+    export default{
+        ...
+        methods:{
+            async deleteTodo(todoId){
+                ...
+            },
+            async AddTodo(todo){
+                ...
+            },
+            handleEdit(todo){
+                ...
+            },
+            async submitEdit(editedTodo){
+                const res = wait fetch(this.endpoint + editedTodo.id, {
+                    method: 'PUT',
+                    headers: '{
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(editedTodo)
+                });
+                const data = await res.json()
+                this.todos = this.todos.map(
+                    (todo) => todo.id === editedTodo.id ? {...todo, text: data.text} : todo
+                )
+                this.editMode = false;
+                this.editTodo = null;
+            },
+            async fetchTodo(){
+                ...
+            }
+        }
+    }
+</script>
+...
 ```
 
