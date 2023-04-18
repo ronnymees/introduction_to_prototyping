@@ -774,3 +774,214 @@ Finaly we update our submitEdit method in a simalar way:
 ...
 ```
 
+## Marking Todos Complete
+
+Let's implement the mark 'Complete' button for each Todo in *ToDoList.vue*:
+
+```vue{13,16,17,18,25}
+<script>
+    ...
+</script>
+    
+<template>
+    <div>
+        <table class="table">
+            <thead>
+                ...
+            </thead>
+            <tbody>
+                <tr v-for="todo in todos" :key="todo.id">
+                    <template v-if="!todo.complete">
+                        <th scope="row">{{todo.text}}</th>
+                        <td>{{todo.date}}</td>
+                        <td>
+                            <button @click="$emit('toggle-complete',todo)" class="btn btn-success">Complete</button>
+                        </td>
+                        <td>
+                            <button @click="$emit('edit-todo', todo)" class="btn btn-warning">Edit</button>
+                        </td>
+                        <td>
+                            <button @click="$emit('delete-todo', todo.id)" class="btn btn-danger">Delete</button>
+                        </td>
+                    </template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+```
+
+So now, only the uncompleted todos are listed. We will show the completed todos in another section.
+
+We emit the 'toggle-complete' event and pass in the todo when the user clicks on the 'Complete' button. So, let's add 'toggle-complete' to the *emits* option:
+
+```vue{6}
+<script>
+    export default{
+        props: {
+            todos: Array
+        },
+        emits:['delete-todo','edit-todo','toggle-complete']
+    }
+</script>
+...
+```
+
+Next we handle the 'toggle-complete' event in App.vue:
+
+```vue{6}
+...
+<template>
+    <div>
+        <EditTodo v-if="editMode" :editTodo="editTodo" @submit-edit="submitEdit" :key="editTodo.id" />
+        <AddTodo v-else @add-todo="addTodo" />
+        <ToDoList : todos="todos" @delete-todo="deleteToDo" @edit-todo="handleEdit" @toggle-complete="toggleComplete" />
+    </div>
+</template>
+```
+
+Now we need to add the *toggleComplete* method:
+
+```vue{21,22,23,24,25,26,27,28,29,30,31,32,33}
+<script>
+    ...
+    export default{
+        ...
+        methods:{
+            async deleteTodo(todoId){
+                ...
+            },
+            async AddTodo(todo){
+                ...
+            },
+            handleEdit(todo){
+                ...
+            },
+            async submitEdit(editedTodo){
+                ...
+            },
+            async fetchTodo(){
+                ...
+            },
+            async toggleComplete(todo){
+                todo.complete = !todo.complete
+                todo.dateCompleted = new Date().toDateString()
+                const res = wait fetch(this.endpoint + todo.id, {
+                    method: 'PUT',
+                    headers: '{
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(todo)
+                });
+                const data = await res.json()
+                this.todos = this.todos.map((temptodo) => temptodo.id === todo.id ? {...temptodo, complete: data.dateCompleted} : temptodo)
+            }
+        }
+    }
+</script>
+...
+```
+
+Currently, completed todos are no longer shown  in the todo list. We want to render completed todos in a seperate section:
+
+```vue{11-37}
+<script>
+    ...
+</script>
+    
+<template>
+    <div>
+        <table class="table">
+            ...
+        </table>
+
+        <br>
+        <h1>Completed Todos</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">To Do</th>
+                    <th scope="col">Date Completed</th>
+                    <th scope="col">Complete</th>                    
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="todo in todos" :key="todo.id">
+                    <template v-if="todo.complete">
+                        <th scope="row">{{todo.text}}</th>
+                        <td>{{todo.dateCompleted}}</td>
+                        <td>
+                            <button @click="$emit('toggle-complete',todo)" class="btn btn-success">Uncomplete</button>
+                        </td>
+                        <td>
+                            <button @click="$emit('delete-todo', todo.id)" class="btn btn-danger">Delete</button>
+                        </td>
+                    </template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+```
+
+## Adding some computed information
+
+Often, some part of the component's state need to be computed from other variables and recomputed when they change. For example, we want to display the number of total todos, pending todos and completed todos.
+
+When a user marks a pending todo as completed or deletes a todo, the number should be recomputed. For these, we use computed properties.
+
+Let's change our code in *App.vue*:
+
+```vue {8-18,28-30}
+<script>
+    components:{
+        ...
+    },
+    data(){
+        ...
+    },
+    computed:{
+        totalTodos(){
+            return this.todos.length
+        },
+        pendingTodos(){
+            return this.todos.filter(todo => {return !todo.complete}).length;
+        },
+        completedTodos(){
+            return this.todos.filter(todo => {return todo.complete}).length;
+        }
+    },
+    methods:{
+        ...
+    }
+</script>
+    
+<template>
+    <div>
+        <EditTodo v-if="editMode" :editTodo="editTodo" @submit-edit="submitEdit" :key="editTodo.id" />
+        <AddTodo v-else @add-todo="addTodo" />
+        <br />
+        <h4>Total Todos: {{totalTodos}} | Pending: {{pendingTodos}} | Completed: {{completedTodos}}</h4>
+        <br />
+        <ToDoList : todos="todos" @delete-todo="deleteToDo" @edit-todo="handleEdit" />
+    </div>
+</template>
+```
+
+:::tip 💡Note
+You can achieve the same result by instead of having a computed property, define the same function as a method:
+
+```
+<h4>Total Todos: {{totalTodos}} ...</h4>
+
+...
+    methods:{
+        totalTodos(){
+            return this.todos.length
+        },
+...
+```
+:::
+
