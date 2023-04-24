@@ -387,6 +387,20 @@ export default {
 
 This time when we take a look in the console, the data property will be empty.
 
+## Using presets in Axios
+
+It is possible to define some presets for Axios.
+
+```ts
+const api = axios.create({
+  baseURL: 'https://reqres.in/api',
+  headers: {'X-Custom-Header': 'foobar'}
+})
+
+api.get('/color/1')
+.then( (result) => console.log(result.data))
+```
+
 ## How to handle errors in Axios
 
 Axios returns an *error* object that we can use in a chained catch block to see what went wrong and were.
