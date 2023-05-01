@@ -318,7 +318,7 @@ You can also define dimensions of the image.
 ::: tip 💡Good practice
 1. It is recommended to always keep images on your own website. The internet is so dynamic that there is no guarantee that a link to an image will work in the future. The image can be deleted or moved.
 
-2. It is best to store images under a `root/images` folder on your site.
+2. The internet is awash with beautiful, compelling, eye-catching images, and it can be tempting to use them for your personal or professional project. However, **most of the images you find online are not available for use without the expressed permission or license from the copyright owner**.
 :::
 
 #### Audio & video
