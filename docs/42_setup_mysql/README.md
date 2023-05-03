@@ -16,8 +16,6 @@ First we will need to install our MySQL RDBMS from Oracle. [MySQL Community Down
 Write your root pasword down somewhere so you don't forget!
 :::
 
-<!--  Mag weg als ik phpmyadmin kan gebruiken
 Once your MySQL server is up and running you can login to it with your **MySQL Workbench** by using your root acces.
 
 ![image](./images/image3.png)
--->
