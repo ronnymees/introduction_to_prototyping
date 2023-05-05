@@ -82,11 +82,13 @@ module.exports = {
           '/65_vuetify/README.md',
         ]
       },{
-        text: 'Security',
+        text: 'Privacy & Security',
         collapsible: true,
         children: [
-          '/71_secure_connection/README.md',
+          '/73_privacy/README.md',
           '/72_login/README.md',
+          '/71_secure_api/README.md',
+          '/74_env/README.md',
         ],
       }
     ],

@@ -1,4 +1,4 @@
-# Secure connection to the backend
+# Secure HTTP Request to API
 
 To be added...
 
@@ -11,5 +11,8 @@ To be added...
 - Paspoort gebruiken voor authenticatie in backend
 - Coockies ?? Hoe ?? Vue regelt dat zelf ?? 
 - Iets vermelden over het gebruik van ENV voor credentials?
+
+
+https://auth0.com/blog/how-to-make-secure-http-requests-with-vue-and-express/
 
 -->
