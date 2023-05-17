@@ -87,8 +87,7 @@ module.exports = {
         children: [
           '/73_privacy/README.md',
           '/72_login/README.md',
-          '/71_secure_api/README.md',
-          '/74_env/README.md',
+          '/71_secure_api/README.md',          
         ],
       }
     ],

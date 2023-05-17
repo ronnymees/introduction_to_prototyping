@@ -54,6 +54,52 @@ This is an nice example:
 
 ![image](./images/image1.png)
 
+## Cookie consent
+
+For this we will be using the internationalized [Cookie Consent component](https://www.npmjs.com/package/@avensio/cookie-consent?activeTab=readme) for vue 3.
+
+Example:
+
+```vue
+<script setup>
+import '@avensio/cookie-consent/style.css'
+import CookieConsent from '@avensio/cookie-consent'
+
+const obj = {
+  requiredLinks: {
+    privacy: {
+      title: 'Privacy',
+      href: '/privacy'
+    },
+    impress: {
+      title: 'Imprint',
+      href: '/imprint'
+    }
+  },
+  categories: [
+    {
+      id: 'essential',
+      label: 'Essential',
+      description: 'Essential Cookies are needed for the website to function properly.',
+      cookies: [
+        {
+          id: 'session-cookie',
+          name: 'Session Cookie',
+          provider: 'Owner of the Website',
+          purpose: 'Saves as anynomous user the items in the shopping card and as authenticated user also additional infos',
+          cookieName: 'SESSION',
+          cookieValidityPeriod: '2 hours'
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<template>
+  <CookieConsent :categories="obj.categories" :required-links="obj.requiredLinks" />
+</template>
+```
 
 ## Cookie
 
@@ -65,10 +111,49 @@ When the cookie is created, it is given a **name**, a **value** and an **expirat
 
 ### Example
 
-To be added...
 
-<!-- TODO : kijken naar onderstaande sites en zelf eens proberen  -->
+Here we will be using [vue3-cookies](https://www.npmjs.com/package/vue3-cookies?activeTab=readme) for handling browser cookies.
 
-<!-- TODO :  https://github.com/orestbida/cookieconsent -->
+First install it with
 
-<!-- TODO :  https://markus.oberlehner.net/blog/implementing-a-gdpr-consent-workflow-with-vue/ -->
+```bash
+npm install vue3-cookies
+```
+
+Next in your vue project import it
+
+```vue
+import VueCookies from 'vue3-cookies'
+```
+
+Then use it
+
+```vue
+<!-- without default settings -->
+app.use(VueCookies);
+<!-- with default settings -->
+app.use(VueCookies, {
+    expireTimes: "30d",
+    path: "/",
+    domain: "",
+    secure: true,
+    sameSite: "None"
+});
+```
+
+Next you can use this
+
+```vue
+<!-- set a global cookie -->
+this.$cookies.set('theme','default');
+<!-- set a cookie -->
+$cookies.set(keyName, value[, expireTimes[, path[, domain[, secure[, sameSite]]]]])
+<!-- get a cookie -->
+$cookies.get(keyName)
+<!-- remove a cookie -->
+$cookies.remove(keyName [, path [, domain]])
+<!-- check if a cookie exists -->
+$cookies.isKey(keyName)
+```
+
+
