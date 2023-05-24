@@ -38,8 +38,10 @@ npm install multer cors // along with express ofcourse
 Now we create the middleware for file upload by creating the `upload.js` file :
 
 ```js
-const util = require("util");
+const util = require("util");       // for node.js 5
 const multer = require("multer");
+import util from ('util');          // for node.js 6
+import multer from ('multer');
 const maxSize = 2 * 1024 * 1024;
 
 let storage = multer.diskStorage({
@@ -81,7 +83,8 @@ In controller folder, create `file.controller.js`:
     * `download()`: receives file name as input parameter, then uses Express res.download API to transfer the file at path (directory + file name) as an ‘attachment’.
 
 ```js
-const uploadFile = require("../middleware/upload");
+const uploadFile = require("../middleware/upload");   // for node.js 5
+import uploadFile from ('../middleware/upload');      // for node.js 6
 
 const upload = async (req, res) => {
   try {
@@ -162,9 +165,11 @@ There are 3 routes with corresponding controller methods:
 Create index.js file inside **routes** folder with content like this:
 
 ```js
-const express = require("express");
+const express = require("express");   // for node.js 5
+import express from ('express');      // for node.js 6
 const router = express.Router();
-const controller = require("../controller/file.controller");
+const controller = require("../controller/file.controller");  // for node.js 5
+import controller from ('../controller/file.controller');  // for node.js 6
 
 let routes = (app) => {
   router.post("/upload", controller.upload);
@@ -184,8 +189,11 @@ You can see that we use controller from `file.controller.js`.
 Now we create our Express server in `server.js`:
 
 ```js
-const cors = require("cors");
+const cors = require("cors");         // for node.js 5
 const express = require("express");
+import cors from ('cors');            // for node.js 6
+import express from ('express');
+
 const app = express();
 
 global.__basedir = __dirname;
@@ -244,7 +252,8 @@ To delete a file in Node.js, we can use the `unlink()` function offered by the N
 Here is an illustration showing how you can apply the technique:
 
 ```js
-const fs = require('fs');
+const fs = require('fs'); // for node.js 5
+import fs from ('fs');    // for node.js 6
 
 fs.unlink(directoryPath + fileName, (err) => {
     if (err) {
@@ -264,7 +273,8 @@ We will export `remove()` function that:
 * return response with message
 
 ```js
-const fs = require("fs");
+const fs = require('fs'); // for node.js 5
+import fs from ('fs');    // for node.js 6
 
 const remove = (req, res) => {
   const fileName = req.params.name;
@@ -298,9 +308,11 @@ Here is route with corresponding controller method:
 Create `index.js` file inside **routes** folder with content like this:
 
 ```js
-const express = require("express");
+const express = require("express");   // for node.js 5
+import express from ('express');      // for node.js 6
 const router = express.Router();
-const controller = require("../controller/file.controller");
+const controller = require("../controller/file.controller");  // for node.js 5
+import controller from ('../controller/file.controller');  // for node.js 6
 
 let routes = (app) => {
   router.delete("/files/:name", controller.remove);

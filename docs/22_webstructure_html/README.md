@@ -161,12 +161,12 @@ All text in an html document can be formatted by the following elements:
 
 Some commonly used characters:
 
-* `&copy` - copyright
-* `&reg` - registered
-* `&euro` - euros
+* `&copy;` - copyright
+* `&reg;` - registered
+* `&euro;` - euros
 
 ::: warning 🔥Note
-Do not use `-` in html text but rather `&ndash`, `&mdash` or `&minus` depending on the context.
+Do not use `-` in html text but rather `&ndash;`, `&mdash;` or `&minus;` depending on the context.
 :::
 
 #### Quotes

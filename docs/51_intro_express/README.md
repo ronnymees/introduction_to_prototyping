@@ -35,7 +35,8 @@ Let's take a closer look at the code.
 
 First we load all dependencies we need, in this case this is only Express.
 ```js
-const express = require('express');
+const express = require('express'); // for node.js 5
+import express from 'express';      // for node.js 6
 const app = express();
 ```
 
@@ -353,7 +354,8 @@ Now make a `db.js` file that contains the handles for the routes.
 In our `server.js` we add this package:
 
 ```js
-const db = require('./db');
+const db = require('./db'); // for node.js 5
+import db from './db';      // for node.js 6
 ```
 
 In the routes section of `server.js` you can refer to the handler methodes with `db.<name of methode>`.
@@ -378,8 +380,11 @@ First we import our database credentials and make a connection (in our methode):
 
 ```js
 // db credentials import
-require('dotenv').config();
+require('dotenv').config();       // for node.js 5
 const mysql = require("mysql");
+import dotenv from 'dotenv';      // for node.js 6
+dotenv.config();                                    
+import mysql from ('mysql');
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;

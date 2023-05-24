@@ -17,7 +17,8 @@ During this course you will learn the basics of HTML5, CSS3, Javascript, Typescr
 4. Backend databases with SQL
 5. Backend scripting with Express.js
 6. Frontend development
-7. Security
+7. Privacy regulations
+8. Deployment
 
 ## Sources
 

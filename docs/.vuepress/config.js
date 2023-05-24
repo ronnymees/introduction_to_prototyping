@@ -82,12 +82,20 @@ module.exports = {
           '/65_vuetify/README.md',
         ]
       },{
-        text: 'Privacy & Security',
+        text: 'Privacy regulations',
         collapsible: true,
         children: [
           '/73_privacy/README.md',
-          '/72_login/README.md',
-          '/71_secure_api/README.md',          
+          //'/72_login/README.md',
+          //'/71_secure_api/README.md',          
+        ],
+      },{
+        text: 'Deployment',
+        collapsible: true,
+        children: [
+          '/81_docker/README.md',
+          //'/72_login/README.md',
+          //'/71_secure_api/README.md',          
         ],
       }
     ],
