@@ -8,6 +8,12 @@
 
 First, if not already installed, we need to install `Node.js`. See [Chapter Development Tools](../01_developmenttools/#node-js).
 
+Next, we install TypeScript globaly:
+
+```bash
+npm install -g typescript
+```
+
 TypeScript will be used in *npm* projects. Later on we will already be in a npm project, for now we can just start a new *npm* project by opening a new terminal and execute the following command:
 
 ```bash
