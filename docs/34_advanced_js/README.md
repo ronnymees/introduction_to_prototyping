@@ -1222,12 +1222,13 @@ const pressure2 = psiToBar(14)
 console.log(`1 bar = ${pressure} psi`)
 console.log(`14 psi = ${pressure2} bar`)
 ```
-
+<!-- 
 ## Transpiling
 
 > Source: <https://www.freecodecamp.org/news/learn-es6-the-dope-way-part-v-classes-browser-compatibility-transpiling-es6-code-47f62267661/>
 
 > To be added.
+-->
 
 ## Callback hell
 
