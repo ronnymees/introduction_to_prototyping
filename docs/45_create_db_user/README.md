@@ -7,6 +7,6 @@ Now let's use our database admin tool (MySQL workbench) with root acces and crea
 ```sql
 CREATE DATABASE vives;
 USE vives;
-CREATE USER 'webuser'@'localhost' IDENTIFIED BY "secretpassword";
+CREATE USER 'webuser'@'localhost' IDENTIFIED WITH mysql_native_password BY "secretpassword";
 GRANT ALL PRIVILEGES ON vives.* TO 'webuser'@'localhost';
 ```

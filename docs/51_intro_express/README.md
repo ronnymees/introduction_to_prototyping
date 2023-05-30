@@ -24,6 +24,22 @@ Your backend application is now *Express ready*.
 
 Go to [Express](https://expressjs.com/en/starter/hello-world.html) to get the *Hello World example code* and place it in a new file `src/server.js` (the entry point you selected).
 
+To be able to run this in development mode we will install `nodemon`:
+
+```bash
+npm install -D nodemon
+```
+
+Now we need to add these lines to our `package.json` file:
+
+``` json{3,4}
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+```
+
 If everything is setup correctly, we should be able to start our backend application (REST-API) and test it.
 Just start it with `npm run dev` and surf to `localhost:3000`.
 

@@ -84,7 +84,9 @@ In controller folder, create `file.controller.js`:
 
 ```js
 const uploadFile = require("../middleware/upload");   // for node.js 5
+const fs = require('fs');
 import uploadFile from ('../middleware/upload');      // for node.js 6
+import fs from ('fs');
 
 const upload = async (req, res) => {
   try {
@@ -125,7 +127,7 @@ const getListFiles = (req, res) => {
     files.forEach((file) => {
       fileInfos.push({
         name: file,
-        url: baseUrl + file,
+        url: directoryPath + file,
       });
     });
 
