@@ -76,6 +76,7 @@ module.exports = {
         collapsible: true,
         children: [
           '/61_frontend_vue/README.md',
+          '/66_routes/README.md',
           '/62_restfull_apis/README.md',
           '/63_crud/README.md',
           '/64_axios/README.md',
