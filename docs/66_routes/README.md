@@ -177,3 +177,17 @@ Finaly, let's adjust our `app.vue` as follows:
 </template>
 ```
 
+## 404 page
+
+If, for what ever reason, the user ends up to a path that doesn't exist. We should show a 404-page.
+
+To do so we need to and the following as last route in our `routes/index.js` file:
+
+```js
+{
+  path: '/:pathMatch(.*)*',
+  component: () => import('../views/NotFound.vue'),      
+}
+```
+
+Now you just have to add a `NotFound.vue` file in your 'views' folder.

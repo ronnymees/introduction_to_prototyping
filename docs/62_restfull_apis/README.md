@@ -181,23 +181,23 @@ Take note that we change from using quotes '' to using backticks `` to allow app
 
 Next, we create a seperate function *onSubmit()* that will be called when a user clicks 'Submit' on a search form. 
 
-```vue{8,9,10,15,16,17,18,19,20}
+```vue{7,8,9,15,16,17,18,19,20}
 <script>
     ...
         methods:{
             async fetchGitHubUsers(){
                 ...
+            },        
+            async onSubmit(e){
+                this.users = await this.fetchGitHubUsers();
             }
-        },        
-        async onSubmit(e){
-            this.users = await this.fetchGitHubUsers();
         }
     }
 </script>
 
 <template>
     <form @submit.prevent="onSubmit">
-        <div class="mb-3>
+        <div class="mb-3">
             <input v-model="searchTerm" type="text" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -211,7 +211,7 @@ Next, we create a seperate function *onSubmit()* that will be called when a user
 
 While getting content from a server, it is often userful to show a loading spinner icon to the user. To do so, we create a data variable called *isLoading* and set it to *true*.
 
-```vue{7,16}
+```vue{7,14,18}
 <script>
     export default{
         data(){
@@ -223,12 +223,18 @@ While getting content from a server, it is often userful to show a loading spinn
         },
         methods:{
             async fetchGitHubUsers(){
-                ...
+                const res = await fetch(`https://api.github.com/search/users?q=${this.searchTerm}`);
+                const data = await res.json();
+                this.isLoading = false;
+                return data.items;
+            },
+            async onSubmit(e){
+                this.isLoading = true;
+                this.users = await this.fetchGitHubUsers();
             }
         },
         async created(){
-            this.isLoading = true;
-            this.users = await this.fetchGitHubUsers();
+            ...
         }
     }
 </script>

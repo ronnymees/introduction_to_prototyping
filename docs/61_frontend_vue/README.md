@@ -660,7 +660,7 @@ In a normal app, we will want to send the form to some external API e.g. login. 
             onSubmit(e){
                 // Validation Email
                 this.validEmail = false;
-                if(this.email.lenght < 6 ) {
+                if(this.email.length < 6 ) {
                     this.emailMessage = "Email should be minimum 6 characters";
                 }
                 else if(this.email.indexOf(' ') >= 0){
@@ -672,7 +672,7 @@ In a normal app, we will want to send the form to some external API e.g. login. 
                 }
                 // Validation password
                 this.validPassword = false;
-                if(this.password.lenght < 6 ) {
+                if(this.password.length < 6 ) {
                     this.passwordMessage = "Password should be minimum 6 characters";
                 }
                 else if(this.password.indexOf(' ') >= 0){
@@ -710,14 +710,14 @@ We will use the *Alert* component from Bootstrap to provide feedback messages.
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input v-model="email" type="email" class="form-control">            
         </div>
-        <div v-if="emailMessage.lenght > 0" class="alert alert-danger" role="alert">
+        <div v-if="emailMessage.length > 0" class="alert alert-danger" role="alert">
             {{ emailMessage }}
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input v-model="password" type="password" class="form-control">
         </div>
-        <div v-if="passwordMessage.lenght > 0" class="alert alert-danger" role="alert">
+        <div v-if="passwordMessage.length > 0" class="alert alert-danger" role="alert">
             {{ passwordMessage }}
         </div>        
         <button type="submit" class="btn btn-primary">Submit</button>
