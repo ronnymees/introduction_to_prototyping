@@ -16,7 +16,7 @@ Information about installing extensions can be found at the  [Visual Studio Code
 
 Launches a local development server with live reload feature for static & dynamic pages.
 
-#### TypeScript Vue Plugin (Volar)
+#### Vue Language Features (Volar)
 
 Volar gives you syntax highlighting, TypeScript support, and intellisense for template expressions and component props within Vue components.
 

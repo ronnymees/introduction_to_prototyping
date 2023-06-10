@@ -7,7 +7,7 @@ Vuetify is on the top three list of the most well-known UI frameworks for Vue.
 ### Manual steps
 
 ```bash
-vue add vuetify  || or is it npm add vuetify?
+npm add vuetify
 ```
 
 In the file where you create the Vue application, add the following code:
