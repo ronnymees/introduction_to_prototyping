@@ -71,44 +71,42 @@ npm install
 npm run dev
 ```
 
-### Backend Dockerfile
+### Docker files
 
 With Docker Compose installed, you need two seperate docker files for each environment. 
 Let's name these Dockerfiles as `Dockerfile-dev`.
 
+**Backend-api**
 ```dockerfile
-FROM node:10
+# The image to start from
+FROM node:18
+# Setup a working directory for our app
 WORKDIR /usr/src/app/field-api
+# Copy the package.json to install all the dependencies
 COPY package*.json ./
+# Install all the dependencies
 RUN npm install
+# Expose port 3000 for our app
 EXPOSE 3000
+# Start the backend
 CMD ["npm", "run", "dev"]
 ```
 
-1. We are starting from the base image `node:10`.
-2. Set the working directory as `/usr/src/app/field-api`.
-3. Copy the `package.json` to install all the dependencies.
-4. Install all the dependencies
-5. We need to put this expose command for the documentation purpose so that other developers know this service runs on port `3000`.
-6. Finally, we run the command `npm run dev`
-
-### Frontend Dockerfile
-
+**Frontend-UI**
 ```dockerfile
-FROM node:10
+# The image to start from
+FROM node:18
+# Setup a working directory for our app
 WORKDIR /usr/src/app/vue-monitor
+# Copy the package.json to install all the dependencies
 COPY package*.json ./
+# Install all the dependencies
 RUN npm install
+# Expose port 8080 for our app
 EXPOSE 8080
+# Start the frontend
 CMD ["npm", "run", "dev"]
 ```
-
-1. We are starting from the base image `node:10`.
-2. Set the working directory as `/usr/src/app/vue-monitor`
-3. Copy the `package.json` to install all the dependencies
-4. Install all the dependencies
-5. Exposing the port `8080`
-6. Finally, we run the command `npm run dev`
 
 ### Start commands in Package.json
 
@@ -124,11 +122,12 @@ For the frontend, we are running this command `npm run dev` which in turn runs t
 
 ### Docker Compose file
 
-Finally, let’s look at the docker-compose file here. Since we need to run Vue on port **8080** and express API on port **3000** we need to define two services: nodejs-server and vue-ui.
+Finally, let’s look at the docker-compose file here. Since we need to run Vue on port **8080** and express API on port **3000** we need to define two services: nodejs-server and vue-ui. But we also need mySQL, so a third service must be defined.
 
 ```yml
 version: '3'
 services:
+  # mySQL database
   mysqldb:
     image: mysql:5.7
     restart: unless-stopped
@@ -138,8 +137,10 @@ services:
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    container_name: mysqldb
     volumes:
       - db:/var/lib/mysql
+  # backend Express
   field-api:
     depends_on:
       - mysqldb
@@ -162,10 +163,14 @@ services:
     volumes:
        - ./field-api:/usr/src/app/field-api
        - /usr/src/app/field-api/node_modules
+  # frontend Vue
   vue-monitor:
+    depends_on: 
+       - field-api
     build:
       context: ./vue-monitor
       dockerfile: Dockerfile-dev
+    restart: unless-stopped
     ports:
       - $VUE_LOCAL_PORT:$VUE_DOCKER_PORT      
     container_name: vue-monitor
@@ -174,7 +179,7 @@ services:
        - /usr/src/app/vue-monitor/node_modules
 ```
 
-If you look at the above file we defined three services each has its own docker file. The most important thing here is the volumes part we need to mount the whole part of the application and node_modules folder as well. We need to mount the node_modules folder because the volume is not mounted during the build.
+If you look at the above file we defined three services. The most important thing here is the volumes part we need to mount the whole part of the application and node_modules folder as well. We need to mount the node_modules folder because the volume is not mounted during the build.
 
 **mysqldb**:
 
@@ -206,7 +211,7 @@ MYSQLDB_ROOT_PASSWORD=<your root password>
 MYSQLDB_DATABASE=vives
 MYSQLDB_USER=webuser
 MYSQLDB_USER_PASSWORD=secretpassword
-MYSQLDB_LOCAL_PORT=3307
+MYSQLDB_LOCAL_PORT=3306
 MYSQLDB_DOCKER_PORT=3306
 
 NODE_LOCAL_PORT=3000
@@ -260,7 +265,7 @@ docker compose down
 ## Create the tables in your database
 
 Every project we make has a `restore.sql` file to do just that.
-Run that query in the Workbench on docker.
+Run that query in the Workbench.
 
 ## Making changes to your project in docker
 
@@ -268,6 +273,6 @@ You can edit the files with nano. After the changes you can rebuild with
 
 ```bash
 docker compose down
-docker compuse up --build -d
+docker compose up --build -d
 ```
 
