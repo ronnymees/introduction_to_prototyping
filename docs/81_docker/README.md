@@ -76,7 +76,7 @@ npm run dev
 ### Docker files
 
 With Docker Compose installed, you need two seperate docker files for each environment. 
-Let's name these Dockerfiles as `Dockerfile-dev`.
+Let's name these Dockerfiles as `Dockerfile.dev`.
 
 **Backend-api**
 ```dockerfile
@@ -124,7 +124,7 @@ For the frontend, we are running this command `npm run dev` which in turn runs t
 
 ### Docker Compose file
 
-Finally, let’s look at the docker-compose file here. Since we need to run Vue on port **8080** and express API on port **3000** we need to define two services: nodejs-server and vue-ui. But we also need mySQL, so a third service must be defined.
+Finally, let’s look at the docker-compose file `Docker-compose.yml`. Since we need to run Vue on port **8080** and express API on port **3000** we need to define two services: nodejs-server and vue-ui. But we also need mySQL, so a third service must be defined.
 
 ```yml
 version: '3'
