@@ -8,11 +8,11 @@ For the installation of docker I will be refering to the install procedure "[Ins
 
 ```bash
 cd /opt
-mkdir docker
-cd docker
+sudo mkdir docker
+
 ```
 
-2. Make docker the owner
+2. Make the docker-group the owner
 
 ```bash
 sudo chown root:docker docker
@@ -33,20 +33,22 @@ sudo chmod g+s docker
 5. Add `compose`, `data` and `apps` folder 
 
 ```bash
-mkdir compose
-mkdir data
-mkdir apps
+cd docker
+sudo mkdir compose
+sudo mkdir data
+sudo mkdir apps
 ```
 
-6. Add user ronny to docker
+6. Add user `<user>` to the docker-group
 
 ```bash
-sudo add user ronny docker
+sudo adduser <user> docker
 ```
 
 7. Changer rights to write for the new folders
 
 ```bash
+cd ..
 sudo chmod -R g+w docker
 ```
 
