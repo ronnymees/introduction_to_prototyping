@@ -148,7 +148,7 @@ services:
       - mysqldb
     build:
       context: ./field-api
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     env_file: ./.env  
     ports:
@@ -171,7 +171,7 @@ services:
        - field-api
     build:
       context: ./vue-monitor
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - $VUE_LOCAL_PORT:$VUE_DOCKER_PORT      
