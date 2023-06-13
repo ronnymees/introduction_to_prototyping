@@ -76,7 +76,7 @@ npm run dev
 ### Docker files
 
 With Docker Compose installed, you need two seperate docker files for each environment. 
-Let's name these Dockerfiles as `Dockerfile.dev`.
+Let's name these Dockerfiles as `Dockerfile`.
 
 **Backend-api**
 ```dockerfile
@@ -130,7 +130,7 @@ Finally, let’s look at the docker-compose file `Docker-compose.yml`. Since we 
 version: '3'
 services:
   # mySQL database
-  mysqldb:
+  mysql-server:
     image: mysql:5.7
     restart: unless-stopped
     env_file: ./.env
@@ -139,16 +139,16 @@ services:
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-    container_name: mysqldb
+    container_name: mysql-server
     volumes:
-      - db:/var/lib/mysql
+      - data:/var/lib/mysql
   # backend Express
   field-api:
     depends_on:
-      - mysqldb
+      - mysql-server
     build:
       context: ./field-api
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     restart: unless-stopped
     env_file: ./.env  
     ports:
@@ -171,7 +171,7 @@ services:
        - field-api
     build:
       context: ./vue-monitor
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - $VUE_LOCAL_PORT:$VUE_DOCKER_PORT      
@@ -213,6 +213,7 @@ MYSQLDB_ROOT_PASSWORD=<your root password>
 MYSQLDB_DATABASE=vives
 MYSQLDB_USER=webuser
 MYSQLDB_USER_PASSWORD=secretpassword
+MYSQLDB_DOCKER_HOST=mysql-server
 MYSQLDB_LOCAL_PORT=3306
 MYSQLDB_DOCKER_PORT=3306
 
@@ -221,6 +222,26 @@ NODE_DOCKER_PORT=3000
 
 VUE_LOCAL_PORT=8080
 VUE_DOCKER_PORT=8080
+```
+
+Next you should change all your environmental variables references in your backend-api to the newly defined ones.
+
+For example:
+
+```js
+    const DB_HOST = process.env.DB_HOST;
+    const DB_PORT = process.env.DB_PORT;
+    const DB_USER = process.env.DB_USER;
+    const DB_PASS = process.env.DB_PASS;
+    const DB_DTBS = process.env.DB_DTBS;
+
+    //becomes
+
+    const DB_HOST = process.env.MYSQLDB_DOCKER_HOST;
+    const DB_PORT = process.env.MYSQLDB_DOCKER_PORT;
+    const DB_USER = process.env.MYSQLDB_USER;
+    const DB_PASS = process.env.MYSQLDB_USER_PASS;
+    const DB_DTBS = process.env.MYSQLDB_DATABASE;
 ```
 
 ## Deploying your project on Docker
