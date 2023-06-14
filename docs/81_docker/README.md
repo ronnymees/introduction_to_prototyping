@@ -1,5 +1,9 @@
 # Deploy your project on a Docker container
 
+First you need to have a server or virtual machine to work on. In our case we then have setup a VPN tunnel to that server and use the extension `ssh remote` to connect to the server through Visual Code.
+
+## Installation of Docker and Docker-compose
+
 For the installation of docker I will be refering to the install procedure "[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)"
 
 ## Making the directory structure in docker
@@ -39,6 +43,10 @@ sudo mkdir data
 sudo mkdir apps
 ```
 
+We will be using the folder `compose` to run Docker Containers from third party images like mySQL.
+The folder `apps` will be used to run Docker Containers from a complete GitHub repository.
+And the `data` folder will contain the data from our running containers. That makes it easier to manage Backup systems.
+
 6. Add user `<user>` to the docker-group
 
 ```bash
@@ -52,7 +60,78 @@ cd ..
 sudo chmod -R g+w docker
 ```
 
-## Prepairing your project to deploy on docker
+## Deploying a mySQL server on Docker
+
+Because we are only building a mySQL server container that is stand-alone we will be building our project in the folder `compose`.
+In a newly created folder for our project we need to start building a `docker-compose.yml` file.
+
+```bash
+cd compose
+sudo mkdir mysql-server
+nano docker-compose.yml
+```
+
+::: tip **Tip**
+You can also open the `/opt/docker/` folder in Visual Code and then use that UI for adding/editing folders and files.
+:::
+
+```yml
+version: '3'
+services:
+  db:
+    image: mysql
+    restart: unless-stopped
+    ports:
+      - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQLDB_DATABASE}
+    volumes:
+      - /opt/docker/data/mysql-server:
+      /var/lib/mysql
+    container_name: mysql-server
+```
+
+* `version: '3'` :  This instructs Docker Compose that we’re using version 3 of the tool.
+* `services:` : This will instruct Docker Compose that what follows will be the services to deploy. 
+* `db:` : This is the db service that will be defined.
+* `image: mysql` : We instruct Docker Compose to use the mysql image for the database.
+* `restart: unless-stopped` : We instruct Docker to always retry to start this service unless it was stopped by the admin.
+* `ports:` : We define both the external and internal ports to use for the database. Normaly this is `- "3306:3306"` but in our example we use Environmental variables to define those ports".
+* `env_file: ./.env` : To be able to use those Environmental variables we need to define in which file they are defined.
+* `environment:` : We configure the database environment. The environment will be the configuration options for the database (passwords, users, database name).
+* `volumes:` : This is optional, but in our case we want the data to be writen in our data folder we made. Therefore we define both the internal and external path.
+* `container_name: ` : If you want your container to have a specific name you can define it like this.
+
+Once our Docker-compose file is ready, we need to make our file with the Environmental variables named `.env`.
+
+
+```env
+MYSQLDB_ROOT_PASSWORD=<your root password>
+MYSQLDB_DATABASE=vives
+MYSQLDB_LOCAL_PORT=3306
+MYSQLDB_DOCKER_PORT=3306
+```
+
+Once we have done that, we are ready to build and run our service.
+
+* use `docker-compose up` to deploy your container in attached mode, so you won't get your bash prompt returned.
+* use `docker-compose up -d` to deploy your container, now you get your bash prompt returned.
+* use `docker-compose ps` to see the name of the containers and status.
+* use `docker-compose down` to stop the docker containers.
+
+Once our service is running we can connect to it with WorkBench and create our webuser like we did [before](../45_create_db_user).
+
+## Deploying a Express.js Backend-API on Docker
+
+To be added...
+
+## Deploying a Vue.js Frontend-UI on Docker
+
+To be added.
+
+## Deploying an example project on docker
 
 Before you can deploy your project to docker we need to make some changes to our project.
 I would recommend to make a new branch `docker` of your repo.
