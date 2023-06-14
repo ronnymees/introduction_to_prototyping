@@ -125,6 +125,52 @@ Once our service is running we can connect to it with WorkBench and create our w
 
 ## Deploying a Express.js Backend-API on Docker
 
+Now let's dockerize a backend API made in Express.js that provides the CRUD actions to a database.
+
+In stead of creating a new project folder in `compose` we will be editing our project repository (if you want you can make a new 'docker' branch for this).
+
+Again in the root folder of the project we create a `docker-compose.yml` file starting form our previous one:
+
+```yml
+version: '3'
+services:
+  db:
+    image: mysql
+    restart: unless-stopped
+    ports:
+      - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQLDB_DATABASE}
+    volumes:
+      - /opt/docker/data/mysql-server:/var/lib/mysql
+    container_name: mysql-server
+  api:
+    depends_on:
+      - db
+    build: ./<name of your project folder>
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - ${API_LOCAL_PORT}:${API_DOCKER_PORT}
+    environment:
+      - DB_HOST=db
+      - DB_USER=${MYSQLDB_USER}
+      - DB_USER_PASSWORD=${MYSQLDB_USER_PASSWORD}
+      - DB_NAME=${MYSQLDB_DATABASE}
+      - DB_PORT=${MYSQLDB_DOCKER_PORT}
+    stdin_open: true
+    tty: true
+```
+
+*  `depends_on:` : Dependency order, db is started before api.
+* `build:` : Configuration options that are applied at build time that we will define in the Dockerfile with relative path
+* `stdin_open` and `tty` : Keep open the terminal after building container
+
+
+
+
 To be added...
 
 ## Deploying a Vue.js Frontend-UI on Docker
