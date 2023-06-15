@@ -149,7 +149,9 @@ services:
   api:
     depends_on:
       - db
-    build: ./<name of your project folder>
+    build:
+      context: ./<backend directory>
+      dockerfile: Dockerfile
     restart: unless-stopped
     env_file: ./.env
     ports:
@@ -160,13 +162,29 @@ services:
       - DB_USER_PASSWORD=${MYSQLDB_USER_PASSWORD}
       - DB_NAME=${MYSQLDB_DATABASE}
       - DB_PORT=${MYSQLDB_DOCKER_PORT}
-    stdin_open: true
-    tty: true
+    container_name: backend-api
 ```
 
 *  `depends_on:` : Dependency order, db is started before api.
 * `build:` : Configuration options that are applied at build time that we will define in the Dockerfile with relative path
-* `stdin_open` and `tty` : Keep open the terminal after building container
+
+Now we need to complete our `.env` file as follows:
+
+```env
+# SQL
+MYSQLDB_ROOT_PASSWORD=<your root password>
+MYSQLDB_DATABASE=vives
+MYSQLDB_LOCAL_PORT=3306
+MYSQLDB_DOCKER_PORT=3306
+
+# API
+MYSQLDB_USER=webuser
+MYSQLDB_PASSWORD=secretpassword
+API_LOCAL_PORT=3000
+API_DOCKER_PORT=3000
+```
+
+Once your project is deployed on Docker you will again need to add our webuser and run the `restore.sql` script from the project to create the necessary tables.
 
 
 
