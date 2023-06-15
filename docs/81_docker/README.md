@@ -63,6 +63,9 @@ sudo chmod -R g+w docker
 ## Deploying a mySQL server on Docker
 
 Because we are only building a mySQL server container that is stand-alone we will be building our project in the folder `compose`.
+
+### Docker-compose file
+
 In a newly created folder for our project we need to start building a `docker-compose.yml` file.
 
 ```bash
@@ -104,8 +107,9 @@ services:
 * `volumes:` : This is optional, but in our case we want the data to be writen in our data folder we made. Therefore we define both the internal and external path.
 * `container_name: ` : If you want your container to have a specific name you can define it like this.
 
-Once our Docker-compose file is ready, we need to make our file with the Environmental variables named `.env`.
+### Environmental variables
 
+Once our Docker-compose file is ready, we need to make our file with the Environmental variables named `.env`.
 
 ```env
 MYSQLDB_ROOT_PASSWORD=<your root password>
@@ -114,20 +118,30 @@ MYSQLDB_LOCAL_PORT=3306
 MYSQLDB_DOCKER_PORT=3306
 ```
 
+### Deploy on docker
+
 Once we have done that, we are ready to build and run our service.
 
 * use `docker-compose up` to deploy your container in attached mode, so you won't get your bash prompt returned.
 * use `docker-compose up -d` to deploy your container, now you get your bash prompt returned.
+* use `docker-compose up --force-recreate --build` to deploy your container and rebuild them after adjustments have been made.
 * use `docker-compose ps` to see the name of the containers and status.
-* use `docker-compose down` to stop the docker containers.
+* use `docker-compose down` to stop and remove the docker containers.
+* use `docker-compose down -v` to stop and remove the docker containers and volumes.
 
 Once our service is running we can connect to it with WorkBench and create our webuser like we did [before](../45_create_db_user).
+
+:::tip Tip
+Now you will need to change the 'webuser'@'localhost' to 'webuser'@'%'.
+:::
 
 ## Deploying a Express.js Backend-API on Docker
 
 Now let's dockerize a backend API made in Express.js that provides the CRUD actions to a database.
 
 In stead of creating a new project folder in `compose` we will be editing our project repository (if you want you can make a new 'docker' branch for this).
+
+### Docker-compose file
 
 Again in the root folder of the project we create a `docker-compose.yml` file starting form our previous one:
 
@@ -165,8 +179,10 @@ services:
     container_name: backend-api
 ```
 
-*  `depends_on:` : Dependency order, db is started before api.
+* `depends_on:` : Dependency order, db is started before api.
 * `build:` : Configuration options that are applied at build time that we will define in the Dockerfile with relative path
+
+### Environmental variables
 
 Now we need to complete our `.env` file as follows:
 
@@ -184,58 +200,107 @@ API_LOCAL_PORT=3000
 API_DOCKER_PORT=3000
 ```
 
-Once your project is deployed on Docker you will again need to add our webuser and run the `restore.sql` script from the project to create the necessary tables.
+### Docker file for the backend API
 
+Next, in the folder of your backend API you need to create a Docker file.
 
+```docker
+FROM node:18
+WORKDIR /usr/src/app/field-api
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD ["npm", "run", "start"]
+```
 
+* `FROM` : start the image from node.js version 18.
+* `WORKDIR` : setup a working directory
+* `COPY` : copy all files to the image
+* `RUN` : install all dependencies
+* `EXPOSE` : expose the backend api on port 3000
+* `CMD` : start the backend.
 
-To be added...
+### Change hostname in your backend
 
-## Deploying a Vue.js Frontend-UI on Docker
+Next we need to change the localhost to the Environmental variable `DB_HOST` that has the name of the mySQL service, and this in all our file's where we make a database connection.
 
-To be added.
+```js
+const DB_HOST = process.env.DB_HOST;
+```
 
-## Deploying an example project on docker
+### Deploy on docker
 
-Before you can deploy your project to docker we need to make some changes to our project.
-I would recommend to make a new branch `docker` of your repo.
-
-Let's say you have a project called `FieldMonitor` with a *Express.js* backend in the folder `field-api` and a *Vue* frontend in the folder `vue-monitor`.
-
-Without Docker Compose you would start the project as follows:
+Now you need to clone your docker repo, by using the https link in `code`, in your `apps` folder.
 
 ```bash
-// Start backend-api
-cd field-api
-npm install
-npm run dev
-
-// Start frontend
-cd vue-monitor
-npm install
-npm run dev
+cd apps
+git clone <https link repo>
 ```
 
-### Docker files
+then go to your project and deploy it like we did with the mySQL server.
 
-With Docker Compose installed, you need two seperate docker files for each environment. 
-Let's name these Dockerfiles as `Dockerfile`.
+Once your project is deployed on Docker you will again need to add our webuser and run the `restore.sql` script from the project to create the necessary tables.
 
-**Backend-api**
-```dockerfile
-# The image to start from
-FROM node:18
-# Setup a working directory for our app
-WORKDIR /usr/src/app/field-api
-# Copy the package.json to install all the dependencies
-COPY package*.json ./
-# Install all the dependencies
-RUN npm install
-# Expose port 3000 for our app
-EXPOSE 3000
-# Start the backend
-CMD ["npm", "run", "dev"]
+## Deploying a full project with Vue Ui, Express Api and mySQL database on docker
+
+Now let's add a Vue frontend to the project.
+
+### Docker-compose file
+
+We add a new service `` to our `docker-compose.yml` file:
+
+```yml
+version: '3'
+services:
+  db:
+    ...
+  api:
+    ...
+  ui:
+    depends_on: 
+       - field-api
+    build:
+      context: ./<frontend directory>
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - ${VUE_LOCAL_PORT}:${VUE_DOCKER_PORT}
+    environment:
+      - API_HOST=api
+    container_name: frontend-ui    
 ```
+
+### Environmental variables
+
+Now we need to complete our .env file as follows:
+
+```env
+# SQL
+MYSQLDB_ROOT_PASSWORD=<your root password>
+MYSQLDB_DATABASE=vives
+MYSQLDB_LOCAL_PORT=3306
+MYSQLDB_DOCKER_PORT=3306
+
+# API
+MYSQLDB_USER=webuser
+MYSQLDB_PASSWORD=secretpassword
+API_LOCAL_PORT=3000
+API_DOCKER_PORT=3000
+
+# UI
+VUE_LOCAL_PORT=8080
+VUE_DOCKER_PORT=8080
+```
+
+
+
+
+
+
+
+### Docker file for the frontend UI
+
+In the folder of your frontend UI you need to create a Docker file:
 
 **Frontend-UI**
 ```dockerfile
@@ -244,107 +309,23 @@ FROM node:18
 # Setup a working directory for our app
 WORKDIR /usr/src/app/vue-monitor
 # Copy the package.json to install all the dependencies
-COPY package*.json ./
+COPY . .
 # Install all the dependencies
 RUN npm install
 # Expose port 8080 for our app
 EXPOSE 8080
 # Start the frontend
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
 ```
 
-### Start commands in Package.json
+### Change hostname and port in your frontend
 
-In the above Dockerfiles, we are running commands with npm on instantiating the containers. Let’s see what are those commands in each `package.json` files.
+In your frontend you need to change all the `localhost` to the Evironmental variable `process.env.API_HOST` and the port `3000` to `process.env.API_DOCKER_PORT`
 
-For the backend, we are running this command `npm run dev` which in turn runs this command `nodemon src/server.js`. Since it’s a development environment we are using nodemon which listens for the changes in files and restart the server automatically.
-
-![image](./images/image3.png)
-
-For the frontend, we are running this command `npm run dev` which in turn runs this command `vite` We are using Vite here to serve the application on port 8080.
-
-![image](./images/image4.png)
-
-### Docker Compose file
-
-Finally, let’s look at the docker-compose file `Docker-compose.yml`. Since we need to run Vue on port **8080** and express API on port **3000** we need to define two services: nodejs-server and vue-ui. But we also need mySQL, so a third service must be defined.
-
-```yml
-version: '3'
-services:
-  # mySQL database
-  mysql-server:
-    image: mysql:5.7
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - MYSQL_DATABASE=$MYSQLDB_DATABASE
-    ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-    container_name: mysql-server
-    volumes:
-      - data:/var/lib/mysql
-  # backend Express
-  field-api:
-    depends_on:
-      - mysql-server
-    build:
-      context: ./field-api
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    env_file: ./.env  
-    ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    environment:
-      - DB_HOST=mysqldb
-      - DB_USER=$MYSQLDB_USER
-      - DB_PASSWORD=$MYSQLDB_USER_PASSWORD
-      - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_DOCKER_PORT
-    stdin_open: true
-    tty: true  
-    container_name: field-api
-    volumes:
-       - ./field-api:/usr/src/app/field-api
-       - /usr/src/app/field-api/node_modules
-  # frontend Vue
-  vue-monitor:
-    depends_on: 
-       - field-api
-    build:
-      context: ./vue-monitor
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    ports:
-      - $VUE_LOCAL_PORT:$VUE_DOCKER_PORT      
-    container_name: vue-monitor
-    volumes:
-       - ./vue-monitor:/usr/src/app/vue-monitor
-       - /usr/src/app/vue-monitor/node_modules
+```js
+const url = `http://${process.env.API_HOST}:${process.env.API_DOCKER_PORT}/weerinfo`;               
 ```
 
-If you look at the above file we defined three services. The most important thing here is the volumes part we need to mount the whole part of the application and node_modules folder as well. We need to mount the node_modules folder because the volume is not mounted during the build.
-
-**mysqldb**:
-
-* image: official Docker image
-* restart: configure the restart policy
-* env_file: specify our .env path that we will create later
-* environment: provide setting using environment variables
-* ports: specify ports will be used
-* volumes: map volume folders
-
-**field-api**:
-
-* depends_on: dependency order, mysqldb is started before app
-* build: configuration options that are applied at build time that we defined in the Dockerfile with relative path
-* environment: environmental variables that Node application uses
-* stdin_open and tty: keep open the terminal after building container
-
-**vue-monitor**:
-
-Same as previous.
 
 ### Docker Compose Environment variables with mySQL
 
