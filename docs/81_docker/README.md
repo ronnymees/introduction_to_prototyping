@@ -195,7 +195,7 @@ MYSQLDB_DOCKER_PORT=3306
 
 # API
 MYSQLDB_USER=webuser
-MYSQLDB_PASSWORD=secretpassword
+MYSQLDB_USER_PASS=secretpassword
 API_LOCAL_PORT=3000
 API_DOCKER_PORT=3000
 ```
@@ -283,7 +283,7 @@ MYSQLDB_DOCKER_PORT=3306
 
 # API
 MYSQLDB_USER=webuser
-MYSQLDB_PASSWORD=secretpassword
+MYSQLDB_USER_PASS=secretpassword
 API_LOCAL_PORT=3000
 API_DOCKER_PORT=3000
 
@@ -291,12 +291,6 @@ API_DOCKER_PORT=3000
 VUE_LOCAL_PORT=8080
 VUE_DOCKER_PORT=8080
 ```
-
-
-
-
-
-
 
 ### Docker file for the frontend UI
 
@@ -315,7 +309,7 @@ RUN npm install
 # Expose port 8080 for our app
 EXPOSE 8080
 # Start the frontend
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "build"]
 ```
 
 ### Change hostname and port in your frontend
@@ -326,100 +320,7 @@ In your frontend you need to change all the `localhost` to the Evironmental vari
 const url = `http://${process.env.API_HOST}:${process.env.API_DOCKER_PORT}/weerinfo`;               
 ```
 
+### Deploy on docker
 
-### Docker Compose Environment variables with mySQL
-
-In the service configuration, we used environmental variables defined inside the .env file:
-
-```env
-MYSQLDB_USER=root
-MYSQLDB_ROOT_PASSWORD=<your root password>
-MYSQLDB_DATABASE=vives
-MYSQLDB_USER=webuser
-MYSQLDB_USER_PASSWORD=secretpassword
-MYSQLDB_DOCKER_HOST=mysql-server
-MYSQLDB_LOCAL_PORT=3306
-MYSQLDB_DOCKER_PORT=3306
-
-NODE_LOCAL_PORT=3000
-NODE_DOCKER_PORT=3000
-
-VUE_LOCAL_PORT=8080
-VUE_DOCKER_PORT=8080
-```
-
-Next you should change all your environmental variables references in your backend-api to the newly defined ones.
-
-For example:
-
-```js
-    const DB_HOST = process.env.DB_HOST;
-    const DB_PORT = process.env.DB_PORT;
-    const DB_USER = process.env.DB_USER;
-    const DB_PASS = process.env.DB_PASS;
-    const DB_DTBS = process.env.DB_DTBS;
-
-    //becomes
-
-    const DB_HOST = process.env.MYSQLDB_DOCKER_HOST;
-    const DB_PORT = process.env.MYSQLDB_DOCKER_PORT;
-    const DB_USER = process.env.MYSQLDB_USER;
-    const DB_PASS = process.env.MYSQLDB_USER_PASS;
-    const DB_DTBS = process.env.MYSQLDB_DATABASE;
-```
-
-## Deploying your project on Docker
-
-### cloning your docker repo branch
-
-1. go to your docker repo and copy the https link in `code`
-
-2. Clone repo in `apps`
-
-```bash
-cd apps
-git clone <https link repo>
-```
-
-### Running your project
-
-First go the the docker app you want to run
-
-```bash
-cd <folder>
-```
-
-To start docker in development
-
-```bash
-docker compose up 
-```
-
-Docker will start and close if terminal is exited.
-
-To start docker in background
-
-```bash
-docker compose up -d
-```
-
-To stop docker
-
-```bash
-docker compose down
-```
-
-## Create the tables in your database
-
-Every project we make has a `restore.sql` file to do just that.
-Run that query in the Workbench.
-
-## Making changes to your project in docker
-
-You can edit the files with nano. After the changes you can rebuild with
-
-```bash
-docker compose down
-docker compose up --build -d
-```
+For the deployment the same steps must be taken as previous with the backend.
 
