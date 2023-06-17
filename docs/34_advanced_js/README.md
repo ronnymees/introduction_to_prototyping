@@ -555,7 +555,7 @@ const sayHello = (name) => {
 }
 ```
 
-::: tip Arrow function syntax
+::: tip 💡 Arrow function syntax
 The `function` keyword is omitted, and instead an `=>` is inserted after the argument list
 :::
 
@@ -884,7 +884,7 @@ const mycar = new Car('Ford');
 console.log( mycar.name )
 ```
 
-::: tip No parentheses
+::: tip 💡 No parentheses
 even if the getter is a method, you do not use parentheses when you want to get the property value.
 :::
 

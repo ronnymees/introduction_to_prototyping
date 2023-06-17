@@ -74,7 +74,7 @@ sudo mkdir mysql-server
 nano docker-compose.yml
 ```
 
-::: tip **Tip**
+::: tip 💡 Tip
 You can also open the `/opt/docker/` folder in Visual Code and then use that UI for adding/editing folders and files.
 :::
 
@@ -131,7 +131,7 @@ Once we have done that, we are ready to build and run our service.
 
 Once our service is running we can connect to it with WorkBench and create our webuser like we did [before](../45_create_db_user).
 
-:::tip Tip
+:::tip 💡 Tip
 Now you will need to change the 'webuser'@'localhost' to 'webuser'@'%'.
 :::
 
