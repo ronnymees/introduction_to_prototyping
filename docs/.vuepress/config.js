@@ -13,7 +13,7 @@ module.exports = {
     navbar: [
       { text: 'Home', link: '/' },
       { text: 'Company', link: 'https://www.vives.be' },      
-      { text: 'Contact', link: 'mailto:ronny.mees@vives.be' },
+      { text: 'Contact', link: 'mailto:ronny.mees@vives.be' }
     ],
     sidebar: [
       {

@@ -1,5 +1,7 @@
 # Full Stack Webdevelopment
 
+![Netlify Status](https://api.netlify.com/api/v1/badges/2da24422-0bbe-45a8-a291-54c5d790d80f/deploy-status)
+
 This course is still in development.
 
 ![image](/files/construction.jpg)
