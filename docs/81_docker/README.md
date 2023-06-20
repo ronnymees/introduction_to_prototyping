@@ -60,6 +60,46 @@ cd ..
 sudo chmod -R g+w docker
 ```
 
+## Deploying a static website on Docker
+
+For this we need to create a GitHub repo that contains the project folder of our website.
+
+![IMAGE](./images/image1.png)
+
+Next we need to create a `docker-compose.yml` file.
+
+```yml
+version: '3'
+services:
+  website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 80:80
+    container_name: frontend-ui
+```
+
+* `version: '3'` :  This instructs Docker Compose that we’re using version 3 of the tool.
+* `services:` : This will instruct Docker Compose that what follows will be the services to deploy. 
+* `restart: unless-stopped` : We instruct Docker to always retry to start this service unless it was stopped by the admin.
+* `ports:` : We define both the external and internal ports to use for the database. 
+* `container_name: ` : If you want your container to have a specific name you can define it like this.
+
+In your project folder you now need to add a Docker file `Dockerfile`:
+
+```docker
+FROM nginx:1.25.1-alpine
+COPY . /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+We will be using NGINX for our web server on port 80 which is the default port.
+
+To deploy start the docker container we use the command `docker-compose up -d`, and to stop it again we can use `docker-compose down`.
+
 ## Deploying a mySQL server on Docker
 
 Because we are only building a mySQL server container that is stand-alone we will be building our project in the folder `compose`.
@@ -96,16 +136,11 @@ services:
     container_name: mysql-server
 ```
 
-* `version: '3'` :  This instructs Docker Compose that we’re using version 3 of the tool.
-* `services:` : This will instruct Docker Compose that what follows will be the services to deploy. 
 * `db:` : This is the db service that will be defined.
 * `image: mysql` : We instruct Docker Compose to use the mysql image for the database.
-* `restart: unless-stopped` : We instruct Docker to always retry to start this service unless it was stopped by the admin.
-* `ports:` : We define both the external and internal ports to use for the database. Normaly this is `- "3306:3306"` but in our example we use Environmental variables to define those ports".
 * `env_file: ./.env` : To be able to use those Environmental variables we need to define in which file they are defined.
 * `environment:` : We configure the database environment. The environment will be the configuration options for the database (passwords, users, database name).
 * `volumes:` : This is optional, but in our case we want the data to be writen in our data folder we made. Therefore we define both the internal and external path.
-* `container_name: ` : If you want your container to have a specific name you can define it like this.
 
 ### Environmental variables
 
@@ -123,7 +158,7 @@ Once we have done that, we are ready to build and run our service.
 
 * use `docker-compose up` to deploy your container in attached mode, so you won't get your bash prompt returned.
 * use `docker-compose up -d` to deploy your container, now you get your bash prompt returned.
-* use `docker-compose up --force-recreate --build` to deploy your container and rebuild them after adjustments have been made.
+* use `docker-compose up --force-recreate --build -d` to deploy your container and rebuild them after adjustments have been made.
 * use `docker-compose ps` to see the name of the containers and status.
 * use `docker-compose down` to stop and remove the docker containers.
 * use `docker-compose down -v` to stop and remove the docker containers and volumes.
