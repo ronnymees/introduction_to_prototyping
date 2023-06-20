@@ -85,7 +85,7 @@ services:
     image: mysql
     restart: unless-stopped
     ports:
-      - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
+      - 3306:3306
     env_file: ./.env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
@@ -112,10 +112,9 @@ services:
 Once our Docker-compose file is ready, we need to make our file with the Environmental variables named `.env`.
 
 ```env
+# mySQL database
 MYSQLDB_ROOT_PASSWORD=<your root password>
 MYSQLDB_DATABASE=vives
-MYSQLDB_LOCAL_PORT=3306
-MYSQLDB_DOCKER_PORT=3306
 ```
 
 ### Deploy on docker
@@ -152,7 +151,7 @@ services:
     image: mysql
     restart: unless-stopped
     ports:
-      - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
+      - 3306:3306
     env_file: ./.env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
@@ -169,13 +168,13 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - ${API_LOCAL_PORT}:${API_DOCKER_PORT}
+      - 3000:3000
     environment:
       - DB_HOST=db
       - DB_USER=${MYSQLDB_USER}
       - DB_USER_PASSWORD=${MYSQLDB_USER_PASSWORD}
       - DB_NAME=${MYSQLDB_DATABASE}
-      - DB_PORT=${MYSQLDB_DOCKER_PORT}
+      - DB_PORT=3306
     container_name: backend-api
 ```
 
@@ -187,28 +186,29 @@ services:
 Now we need to complete our `.env` file as follows:
 
 ```env
-# SQL
+# mySQL database
 MYSQLDB_ROOT_PASSWORD=<your root password>
 MYSQLDB_DATABASE=vives
-MYSQLDB_LOCAL_PORT=3306
-MYSQLDB_DOCKER_PORT=3306
 
 # API
 MYSQLDB_USER=webuser
 MYSQLDB_USER_PASS=secretpassword
-API_LOCAL_PORT=3000
-API_DOCKER_PORT=3000
 ```
 
 ### Docker file for the backend API
 
-Next, in the folder of your backend API you need to create a Docker file.
+Next, in the folder of your backend API you need to create a Docker file that has a development and a build stage.
 
 ```docker
-FROM node:18
-WORKDIR /usr/src/app/field-api
-COPY . .
+# Development stage
+FROM node:18.16-alpine3.17 as develop-stage
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
+COPY . .
+
+# Build stage
+FROM develop-stage as build-stage
 EXPOSE 3000
 CMD ["npm", "run", "start"]
 ```
@@ -247,7 +247,7 @@ Now let's add a Vue frontend to the project.
 
 ### Docker-compose file
 
-We add a new service `` to our `docker-compose.yml` file:
+We add a new service `ui` to our `docker-compose.yml` file:
 
 ```yml
 version: '3'
@@ -258,66 +258,106 @@ services:
     ...
   ui:
     depends_on: 
-       - field-api
+       - api
     build:
       context: ./<frontend directory>
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - ${VUE_LOCAL_PORT}:${VUE_DOCKER_PORT}
+      - 80:80
     environment:
-      - API_HOST=api
+      - VUE_APP_API_HOST=<your server ip-adress>:3000
     container_name: frontend-ui    
-```
-
-### Environmental variables
-
-Now we need to complete our .env file as follows:
-
-```env
-# SQL
-MYSQLDB_ROOT_PASSWORD=<your root password>
-MYSQLDB_DATABASE=vives
-MYSQLDB_LOCAL_PORT=3306
-MYSQLDB_DOCKER_PORT=3306
-
-# API
-MYSQLDB_USER=webuser
-MYSQLDB_USER_PASS=secretpassword
-API_LOCAL_PORT=3000
-API_DOCKER_PORT=3000
-
-# UI
-VUE_LOCAL_PORT=8080
-VUE_DOCKER_PORT=8080
 ```
 
 ### Docker file for the frontend UI
 
-In the folder of your frontend UI you need to create a Docker file:
+In the folder of your frontend UI you need to create a Docker file. This time it exists of a development, a build and a production stage.
 
 **Frontend-UI**
 ```dockerfile
-# The image to start from
-FROM node:18
-# Setup a working directory for our app
-WORKDIR /usr/src/app/vue-monitor
-# Copy the package.json to install all the dependencies
-COPY . .
-# Install all the dependencies
+# Development Stage
+FROM node:18.16-alpine3.17 as develop-stage
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-# Expose port 8080 for our app
-EXPOSE 8080
-# Start the frontend
-CMD ["npm", "run", "build"]
+COPY . .
+
+# Build Stage
+FROM develop-stage as build-stage
+RUN npm run build
+
+# Production Stage
+FROM nginx:1.25.1-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY 30-vue-env-replace.sh /docker-entrypoint.d
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 ```
+
+Let's take a closer look at this development stage. 
+
+We are using nginx as a webserver to host our website. In our Vue project folder we need a `nginx.conf` file, with the following content:
+
+```conf
+user  nginx;
+worker_processes  1;
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+events {
+  worker_connections  1024;
+}
+http {
+  include       /etc/nginx/mime.types;
+  default_type  application/octet-stream;
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+  access_log  /var/log/nginx/access.log  main;
+  sendfile        on;
+  keepalive_timeout  65;
+  server {
+    listen       80;
+    server_name  localhost;
+    location / {
+      root /usr/share/nginx/html;
+      index  index.html;
+      try_files $uri $uri/ /index.html;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   /usr/share/nginx/html;
+    }
+  }
+}
+```
+
+An other problem that we will have is that environment variables are injected into the application during the build stage. The resulting static files thus contain the respective values of those variables as hardcoded strings. To solve this we will use a script `30-vue-env-replace.sh` to replace all environment variables with there correct values.
+
+```bash
+#!/bin/sh
+echo "Replacing ENV vars before starting nginx"
+for file in /usr/share/nginx/html/assets/*.js;
+do
+  if [ ! -f $file.tmpl.js ]; then
+    cp $file $file.tmpl.js
+  fi
+  envsubst '$VUE_APP_API_HOST' < $file.tmpl.js > $file
+done
+
+exit 0
+```
+
+Once you created this file, you will need to run the command `chmod +x 30-vue-env-replace.sh` to make the script executable.
+The script will be executed by Docker because we have put it in the entrypoint. 
 
 ### Change hostname and port in your frontend
 
-In your frontend you need to change all the `localhost` to the Evironmental variable `process.env.API_HOST` and the port `3000` to `process.env.API_DOCKER_PORT`
+In your frontend you need to change the `localhost` to the Evironmental variable.
 
 ```js
-const url = `http://${process.env.API_HOST}:${process.env.API_DOCKER_PORT}/weerinfo`;               
+const url = `http://${VUE_APP_API_HOST}/weerinfo`;            
 ```
 
 ### Deploy on docker
