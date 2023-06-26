@@ -48,6 +48,7 @@ And professionally relevant sources such as:
 * Heitor Ramon Ribeiro (2020). Vue.js 3 Cookbook
 * Maya Shavin & Raymond Camden (2023). Frontend Development Projects with Vue.js 3
 * DigitalOcean tutorials
+* Code for Geek
 
 ## License
 

@@ -70,6 +70,7 @@ module.exports = {
           '/51_intro_express/README.md',
           '/52_rest_api_crud/README.md',
           '/53_rest_api_fileupload/README.md',
+          '/54_security/README.md',
         ]
       },{
         text: 'Frontend Development',
