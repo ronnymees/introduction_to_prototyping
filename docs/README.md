@@ -9,7 +9,7 @@ This course is still in development.
 ## Introduction
 
 This course is developed for PBA Electronics-ICT at [University College VIVES](https://www.vives.be/nl/technology/elektronica-ict).
-During this course you will learn the basics of HTML5, CSS3, Javascript, Typescript, Node.js, Express.js, Vue, MySQL, MariaDB, ... all tools to become a full stack developer.
+During this course you will learn the basics of HTML5, CSS3, Javascript, Typescript, Node.js, Express.js, Vue, MySQL, Docker, ... all tools to become a full stack developer.
 
 ## Content
 

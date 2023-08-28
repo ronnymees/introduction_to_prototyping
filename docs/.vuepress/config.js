@@ -12,7 +12,7 @@ module.exports = {
     logo: '/files/afbeelding1.png',
     navbar: [
       { text: 'Home', link: '/' },
-      { text: 'Company', link: 'https://www.vives.be' },      
+      { text: 'Organization', link: 'https://www.vives.be' },      
       { text: 'Contact', link: 'mailto:ronny.mees@vives.be' }
     ],
     sidebar: [
