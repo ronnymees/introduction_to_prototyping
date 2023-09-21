@@ -73,10 +73,15 @@ X-Powered-By: PHP/5.5.16
 
 ### Try it yourself
 
-1. Open chrome browser, and press F12 for the developer tools
+1. Open the developer tools in your browser
 2. Choose the ‘Network’ tab in the developer tools
 3. Visit a website, eg: www.vives.be
 4. Click on the initial request to view the details
+
+:::tip 💡Developer tools
+* In Chrome the keybind is `F12`
+* In Opera the keybind is `CRTL+SHIFT+i`
+:::
 
 ![IMAGE](./images/image22.png)
 
