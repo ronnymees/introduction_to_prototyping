@@ -938,10 +938,6 @@ mycar.carname = 'Volvo'
 console.log( mycar.carname)
 ```
 
-## Array and Object Methods
-
-> To be added
-
 ## Destructuring
 
 > Source: <https://developer.mozilla.org/nl/docs/Web/JavaScript/Reference/Operatoren/Destructuring_assignment>
@@ -1091,15 +1087,21 @@ console.log(`1 bar = ${pressure} psi`)
 console.log(`14 psi = ${pressure2} bar`)
 ```
 
-### ES6 Modules
+### ES6 version
+
+Change the export to default
 
 ```js
 export default class PressureConverter {...}
 ```
 
+Use import instead of require
+
 ```js
-import PressureConverter from './lib/pressure-converter'
+import PressureConverter from './lib/pressure-converter.js'
 ```
+
+Result
 
 ```js
 const PsiBarRatio = 0.0689476
@@ -1116,7 +1118,7 @@ export default class PressureConverter {
 ```
 
 ```js
-import PressureConverter from './lib/pressure-converter'
+import PressureConverter from './lib/pressure-converter.js'
 
 const pc = new PressureConverter()
 
@@ -1127,35 +1129,13 @@ console.log(`1 bar = ${pressure} psi`)
 console.log(`14 psi = ${pressure2} bar`)
 ```
 
+Let node know you are using ES6 by adding this to the `package.json` file (if there is no `package.json` file, just add it)
+
 ```json
-  "babel": {
-    "presets": [
-      [ "@babel/preset-env", { "modules": "commonjs" } ]
-    ]
-  }
+{
+  "type": "module"
+}
 ```
-
-```shell
-npx babel-node .\src\index.js
-```
-
-<!-- ```bash
-npm install --save-dev @babel/preset-env
-```
-
-```bash
-npm install --save-dev @babel/core @babel/cli
-```
-
-```bash
-npm install --save-dev @babel/core @babel/node
-``` -->
-
-<https://babeljs.io/docs/en/babel-preset-env>
-
-<https://babeljs.io/docs/en/babel-cli>
-
-<https://babeljs.io/docs/en/next/babel-node.html>
 
 #### Default Exports
 
@@ -1174,7 +1154,7 @@ export default class PressureConverter {
 ```
 
 ```js
-import PressureConverter from './lib/pressure-converter'
+import PressureConverter from './lib/pressure-converter.js'
 
 const pc = new PressureConverter()
 
@@ -1188,20 +1168,20 @@ console.log(`14 psi = ${pressure2} bar`)
 #### Multiple Exports
 
 ```js
-export default const PsiBarRatio = 0.0689476
+const PsiBarRatio = 0.0689476
+export default PsiBarRatio
 
-export barToPsi(value) {
+export function barToPsi(value) {
   return value / PsiBarRatio
 }
 
-export psiToBar(value) {
+export function psiToBar(value) {
   return value * PsiBarRatio
 }
-
 ```
 
 ```js
-import PsiBarRatio, { barToPsi, psiToBar } from './lib/pressure-converter'
+import PsiBarRatio, { barToPsi, psiToBar } from './lib/pressure-converter.js'
 
 const pressure = barToPsi(1)
 const pressure2 = psiToBar(14)
@@ -1214,7 +1194,7 @@ console.log(`The ratio between psi and bar is ${PsiBarRatio}`)
 #### Import Alias
 
 ```js
-import { barToPsi as btp, psiToBar as ptb } from './lib/pressure-converter'
+import PsiBarRatio, { barToPsi as btp, psiToBar as ptb } from './lib/pressure-converter.js'
 
 const pressure = barToPsi(1)
 const pressure2 = psiToBar(14)
@@ -1222,13 +1202,6 @@ const pressure2 = psiToBar(14)
 console.log(`1 bar = ${pressure} psi`)
 console.log(`14 psi = ${pressure2} bar`)
 ```
-<!-- 
-## Transpiling
-
-> Source: <https://www.freecodecamp.org/news/learn-es6-the-dope-way-part-v-classes-browser-compatibility-transpiling-es6-code-47f62267661/>
-
-> To be added.
--->
 
 ## Callback hell
 
