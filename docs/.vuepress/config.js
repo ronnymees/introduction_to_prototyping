@@ -58,7 +58,7 @@ module.exports = {
         children: [
           '/41_databases/README.md',
           '/42_setup_mysql/README.md',
-          //'/43_setup_mariadb/README.md',
+          '/43_setup_mariadb/README.md',
           //'/44_install_phpmyadmin/README.md',
           '/45_create_db_user/README.md',
           '/46_crud_db/README.md',

@@ -15,3 +15,9 @@ Write your root pasword down somewhere so you don't forget!
 * Configure MariaDB
 
 ![image](./images/image5.png)
+
+**MySQL Workbench**
+
+When you choose MariaDB as SQL Server you still need to install the MySQL Workbench.
+In that case you need to start the installation of [MySQL](../42_setup_mysql/README.md) and choose Custom.
+Then only select the installation of MySQL Workbench.
