@@ -236,6 +236,7 @@ Now we want to loop true this data and display it:
 
 ``` vue
 <template>
+    <h1>List of products</h1>
     <div v-for='product in products' :key='product.id'>
         <h3>{{product.id}}: {{product.name}}</h3>
     </div>
@@ -243,7 +244,8 @@ Now we want to loop true this data and display it:
 ```
 
 :::tip 💡Note
-Note that we have provided a *key* attribute (*product.id*) for our product items. The key (product.id) tells Vue how to figure out wich DOM node to change when *products* update. Thus, when dynamically editing the list, and removing/adding elements, you should always pass an identifier in list to prevent issues.
+* Note that we have provided a *key* attribute (*product.id*) for our product items. The key (product.id) tells Vue how to figure out wich DOM node to change when *products* update. Thus, when dynamically editing the list, and removing/adding elements, you should always pass an identifier in list to prevent issues.
+* On large screen like a laptop this is visualized in the center of the screen, to have this on the top left of the screen just remove the media query in the file `main.css`.
 :::
 
 ## Modifying components
@@ -391,15 +393,15 @@ Now we modify our Rating component as follows:
 <template>
     <h1>Rating: {{rating}}</h1>
     <i v-if="rating >=1" class="bi bi-star-fill"></i>
-    <i v-else class="bi bi-star></i>
+    <i v-else class="bi bi-star"></i>
     <i v-if="rating >=2" class="bi bi-star-fill"></i>
-    <i v-else class="bi bi-star></i>
+    <i v-else class="bi bi-star"></i>
     <i v-if="rating >=3" class="bi bi-star-fill"></i>
-    <i v-else class="bi bi-star></i>
+    <i v-else class="bi bi-star"></i>
     <i v-if="rating >=4" class="bi bi-star-fill"></i>
-    <i v-else class="bi bi-star></i>
+    <i v-else class="bi bi-star"></i>
     <i v-if="rating >=5" class="bi bi-star-fill"></i>
-    <i v-else class="bi bi-star></i>
+    <i v-else class="bi bi-star"></i>
 </template>
 ```
 
@@ -429,7 +431,7 @@ Note that props cannot be mutated. In Rating, our prop *initialRating* is used t
 ``` vue
 <script>
     export default{
-        props: ['rating'],
+        props: ['initalRating'],
         data(){
             return{
                 rating: this.initialRating
@@ -437,6 +439,12 @@ Note that props cannot be mutated. In Rating, our prop *initialRating* is used t
         }
     }
 </script>
+```
+
+We also need to change this where we use the rating component:
+
+``` vue
+<Rating :initialRating='1' /> 
 ```
 
 ### Handling Events
@@ -448,7 +456,7 @@ First we need a methode that will handle the action for the event:
 ``` vue{8,9,10,11,12,13}
 <script>
     export default{
-        props: ['rating'],
+        props: ['initalRating'],
         data(){
             return{
                 rating: this.initialRating
@@ -468,25 +476,25 @@ Next we change our template code to handle the event:
 ``` vue{3,6,7,10,11,14,15,18,19,22}
 <template>
     <h1>Rating: {{rating}}</h1>
-    <span v-on:click="assignRating(1)>
+    <span v-on:click="assignRating(1)">
         <i v-if="rating >=1" class="bi bi-star-fill"></i>
-        <i v-else class="bi bi-star></i>
+        <i v-else class="bi bi-star"></i>
     </span>
-    <span v-on:click="assignRating(2)>
+    <span v-on:click="assignRating(2)">
         <i v-if="rating >=2" class="bi bi-star-fill"></i>
-        <i v-else class="bi bi-star></i>
+        <i v-else class="bi bi-star"></i>
     </span>
-    <span v-on:click="assignRating(3)>
+    <span v-on:click="assignRating(3)">
         <i v-if="rating >=3" class="bi bi-star-fill"></i>
-        <i v-else class="bi bi-star></i>
+        <i v-else class="bi bi-star"></i>
     </span>
-    <span v-on:click="assignRating(4)>
+    <span v-on:click="assignRating(4)">
         <i v-if="rating >=4" class="bi bi-star-fill"></i>
-        <i v-else class="bi bi-star></i>
+        <i v-else class="bi bi-star"></i>
     </span>
-    <span v-on:click="assignRating(5)>
+    <span v-on:click="assignRating(5)">
         <i v-if="rating >=5" class="bi bi-star-fill"></i>
-        <i v-else class="bi bi-star></i>
+        <i v-else class="bi bi-star"></i>
     </span>
 </template>
 ```
@@ -500,7 +508,7 @@ To illustrate, suppose we want our filled stars to be orange, we can create a va
 ``` vue{7}
 <script>
     export default{
-        props: ['rating'],
+        props: ['initalRating'],
         data(){
             return{
                 rating: this.initialRating,
@@ -516,9 +524,9 @@ And then add a *style* binding:
 ``` vue{3}
 <template>
     <h1>Rating: {{rating}}</h1>
-    <span :style="{color: color}" v-on:click="assignRating(1)>
+    <span :style="{color: color}" v-on:click="assignRating(1)">
         <i v-if="rating >=1" class="bi bi-star-fill"></i>
-        <i v-else class="bi bi-star></i>
+        <i v-else class="bi bi-star"></i>
     </span>
 ...
 ```
@@ -686,9 +694,6 @@ In a normal app, we will want to send the form to some external API e.g. login. 
                 if(this.validEmail && this.validPassword){
                     alert('Email: ' + this.email + '\nPassword: ' + this.password);
                 }
-                else {
-                    alert(this.emailMessage);
-                }
             }
         }
     }
@@ -737,9 +742,6 @@ Currently, after submitting our form, the user-entered values in the fields rema
                     this.password = '';
                     this.validEmail = false;
                     this.validPassword = false;
-                }
-                else {
-                    alert('Email: ' + this.email + '\nPassword: ' + this.password);
                 }
 ...
 </script>
