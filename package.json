@@ -1,7 +1,7 @@
 {
-  "name": "fullstackdevelopment_eoict",
+  "name": "introdcution_to_prototyping",
   "version": "0.0.1",
-  "description": "Cursus Full Stack Development PBA Elektronica ICT",
+  "description": "Course Introduction to Prototyping PBA Elektronica ICT",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ronnymees/fullstackdevelopment_eoict"
+    "url": "git+https://github.com/ronnymees/introdcution_to_prototyping"
   },
   "authors": {
     "name": "Ronny Mees",
     "email": "ronny.mees@vives.be"
   },
   "license": "MIT",
-  "homepage": "https://github.com/ronnymees/fullstackdevelopment_eoict#readme",
+  "homepage": "https://github.com/ronnymees/introdcution_to_prototyping#readme",
   "devDependencies": {
     "@vuepress/plugin-container": "^2.0.0-beta.61",
     "@vuepress/plugin-register-components": "^2.0.0-beta.61",    
