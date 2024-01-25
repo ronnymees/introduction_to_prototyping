@@ -11,7 +11,10 @@ During this course you will learn ...
 
 ## Content
 
-1. ...
+1. Prototyping
+2. Modelmaking
+3. Computer Aided Design
+4. Software
 
 ## Sources
 
@@ -22,6 +25,7 @@ This work is the result of the knowledge of the writer & colleagues at VIVES Uni
 
 And professionally relevant sources such as:
 
+* PROTOTYPING AND MODELMAKING FOR PRODUCT DESIGN by Bjarki Hallgrimsson (2012)
 * ...
 
 ## License

@@ -17,16 +17,40 @@ module.exports = {
     ],
     sidebar: [
       {
-        text: 'Prototyping Tools',
+        text: 'Prototyping',
         collapsible: true,
         children: [
-          '/01_prototyping_tools/README.md',          
+          '/11_introduction/README.md',
+          '/12_prototyping-modelmaking/README.md',
+          '/13_tools-we-use/README.md',
+        ]
+      }
+      ,{
+        text: 'Modelmaking',
+        collapsible: true,
+        children: [
+          '/21_introduction-to-3dprinting/README.md',          
+          '/22_3dprinters-at-our-disposal/README.md',          
+          '/23_lasercutting-engraving/README.md',          
+          '/24_lasercutters-at-our-disposal/README.md',  
+          '/25_tools-and-safety/README.md',          
         ]
       },{
-        text: 'Introduction',
+        text: 'Computer Aided Design',
         collapsible: true,
         children: [
-          '/11_introduction/README.md',          
+          '/31_introduction-to-cad/README.md',          
+          '/32_part-modeling/README.md',
+          '/33_assembly-modeling/README.md',
+          '/34_export-to-machine/README.md',
+        ]
+      },{
+        text: 'Software',
+        collapsible: true,
+        children: [
+          '/41_fusion360/README.md',          
+          '/42_cura/README.md',
+          //'/43_??/README.md',
         ]
       }
     ],
