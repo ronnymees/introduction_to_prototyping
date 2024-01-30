@@ -26,6 +26,7 @@ This work is the result of the knowledge of the writer & colleagues at VIVES Uni
 And professionally relevant sources such as:
 
 * PROTOTYPING AND MODELMAKING FOR PRODUCT DESIGN by Bjarki Hallgrimsson (2012)
+* Prototyping for Physical and Digital Products by Kathryn McElroy (2016)
 * ...
 
 ## License

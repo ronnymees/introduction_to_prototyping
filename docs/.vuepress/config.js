@@ -21,8 +21,9 @@ module.exports = {
         collapsible: true,
         children: [
           '/11_introduction/README.md',
-          '/12_prototyping-modelmaking/README.md',
-          '/13_tools-we-use/README.md',
+          '/12_prototypes-for-physical-products/README.md',
+          '/13_prototypes-for-digital-products/README.md',
+          '/14_testing-with-prototypes/README.md',
         ]
       }
       ,{
