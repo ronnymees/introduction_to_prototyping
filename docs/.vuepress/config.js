@@ -25,33 +25,40 @@ module.exports = {
           '/13_prototypes-for-digital-products/README.md',
           '/14_testing-with-prototypes/README.md',
         ]
-      }
-      ,{
+      },{
         text: 'Modelmaking',
         collapsible: true,
         children: [
-          '/21_introduction-to-3dprinting/README.md',          
-          '/22_3dprinters-at-our-disposal/README.md',          
-          '/23_lasercutting-engraving/README.md',          
-          '/24_lasercutters-at-our-disposal/README.md',  
-          '/25_tools-and-safety/README.md',          
+          '/21_paper-and-cardboard/README.md',
+          '/22_foamcore/README.md',          
+          '/23_foam/README.md',
+          '/24_3dprinting/README.md',          
+          '/25_lasercutting-engraving/README.md',                    
+        ]
+      },{
+        text: 'Prototyping Lab',
+        collapsible: true,
+        children: [
+          '/31_health-and-safety/README.md',
+          '/32_tools-and-workspace/README.md',          
+          '/33_3dprinters-at-our-disposal/README.md',          
+          '/34_lasercutters-at-our-disposal/README.md',            
         ]
       },{
         text: 'Computer Aided Design',
         collapsible: true,
         children: [
-          '/31_introduction-to-cad/README.md',          
-          '/32_part-modeling/README.md',
-          '/33_assembly-modeling/README.md',
-          '/34_export-to-machine/README.md',
+          '/41_introduction-to-cad/README.md',          
+          '/42_part-modeling/README.md',
+          '/43_assembly-modeling/README.md',
+          '/44_export-to-machine/README.md',
         ]
       },{
         text: 'Software',
         collapsible: true,
         children: [
-          '/41_fusion360/README.md',          
-          '/42_cura/README.md',
-          //'/43_??/README.md',
+          '/51_fusion360/README.md',          
+          '/52_cura/README.md',          
         ]
       }
     ],
