@@ -47,10 +47,37 @@ At the end of the lesson this erea is cleaned and waste is disposed of in the ri
 
 ## Tools
 
+In the prototyping lab you will be using both hand tools and powertools. Please keep in mind the **health and safety** rules as described previously.
+
 ### Hand tools
+
+All hand tools are stored in cabinets, students are free to take these tools during the practicum but at the end of the lessons all tools are placed back in the cabinet in good condition. If anything happens to a tool, always warn the teacher about this.
+
+As for hand tools you mainly will be using:
+* Steel rule
+* Venier caliper
+* Hand saw
+* Utility knife
+* Rasp
+* Files
+* Pliers
+* Sandpaper
+* Screwdriver
+* Soldering iron
+
+<!-- TODO : een foto hiervan maken en hier plaatsen
+![IMAGE](./images/afbeelding4.png)
+-->
 
 ### Power tools
 
+The powertools have a specific place in the prototyping lab and always require you to wear protective measures and keep the healt and safety rules in mind.
+Don't use these tools without a proper instruction from the teacher.
 
+* Drill press
+* Sanding belt
 
+<!-- TODO : een foto hiervan maken en hier plaatsen
+![IMAGE](./images/afbeelding4.png)
+-->
 

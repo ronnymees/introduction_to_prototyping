@@ -92,3 +92,15 @@ clean of debris and dirt that could cause you to trip or slip. Also be aware of 
 unsupervised. Overfamiliarity can also be a source of accidents, especially when work is done without thinking through the steps and being cautious.
 
 
+## Safety pictograms
+
+Before you start working in the prototyping lab it is nessecery that you learn a few pictograms.
+
+### Hazard pictograms
+
+![IMAGES](./images/afbeelding5.png)
+
+### Protection pictograms
+
+![IMAGES](./images/afbeelding6.png)
+
