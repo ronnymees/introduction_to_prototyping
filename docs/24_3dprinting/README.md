@@ -122,5 +122,7 @@ Selecting the right process comes down to aligning the advantages and limitation
 
 ![IMAGE](./images/afbeelding1.png)
 
+## Tips for 3D printing
 
+<!-- TODO: print voorwaarden naar modellering -->
 

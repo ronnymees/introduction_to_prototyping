@@ -1,1 +1,109 @@
 # 3D printing
+
+In our prototyping lab we have the following 3D printers:
+
+**Creality 3D Ender 3 S1**
+
+![IMAGE](./images/afbeelding1.png)
+
+Specifications:
+* Build volume : w=220mm, l=220mm, h=270mm
+* Bed heating : 100°C
+* Extruder heating : 260°C
+* Filament : 1,75mm
+* Nozzle : 0,4mm
+
+**Creality 3D Ender 3 S1 Plus**
+
+![IMAGE](./images/afbeelding2.png)
+
+Specifications:
+* Build volume : w=300mm, l=300mm, h=300mm
+* Bed heating : 100°C
+* Extruder heating : 260°C
+* Filament : 1,75mm
+* Nozzle : 0,4mm
+
+:::warning ✋Attention
+Handle these devices with care. Make sure you know what you are doing, if you have doubts, ask the teacher for help!
+:::
+
+## Logbook
+
+When you use a 3D printer, then write it in the logbook so we can keep track of the use of the printers, schedule maintenance and order filament.
+
+| Name | File | Project | Filament | Print time |
+| --- | --- | --- | --- | --- |
+| your name | the name of the file you print | The name of the project this is for | Color and meters | Printing time |
+
+## Slicing your model
+
+The base file for a 3D printer is an **.STL or .STEP file**. Both can be exported from CAD software like Fusion 360 we will be using.
+
+An STL file describes a raw, unstructured triangulated surface by the unit normal and vertices of the triangles using a three-dimensional Cartesian coordinate system. STL files contain no scale information, and the units are arbitrary. STL files describe only the surface geometry of a three-dimensional object without any representation of color, texture or other common CAD model attributes.
+
+![IMAGE](./images/afbeelding3.png)
+
+To be able to print our model we first have to slice that model in the printing layers. There are many programs that can do this for you but at school we use **Cura** from UltiMaker ([Install info](../52_cura/README.md)).
+
+### Steps to take
+
+1. Select the correct 3D printer (You can add the printer if it's not in the list).
+2. Select the correct material and nozzle (Normaly this will be PLA and 0,4mm).
+3. Select the print quality (leave this at standard), the infill (normaly this is 20%, consultate the teacher if you want to change this), check support if needed.
+4. Next you can load the model file(s) and arange them on the printing bed.
+5. Once you are done you can hit Slice and the model will be sliced into the printing layers. Here you get the information on the printing time and used material.
+6. Save the produced G-code to the SD-card from the 3D printer.
+
+## Printing your model
+
+1. Insert the SD-card back into the 3D printer.
+2. Power on the printer.
+3. Check if the correct filament is loaded, if not folow the steps as described below.
+4. Go to the **print** menu and select your model.
+5. The bed and nozzel will start to pre-heat to the set temperature.
+6. Once reached the printing starts.
+
+### Change loaded filament
+
+#### Remove the filament currently loaded
+
+![IMAGE](./images/afbeelding4.png)
+
+In order to do this, you have to heat up the nozzle to the melting temperature of the specific type of filament you’re using. If you’re not sure what the temperature is, typically the recommended temperature range is listed on the side of the spool.
+
+1. To set the temperature, turn on your printer and click the control knob to bring up the menu.
+2. Scroll to Control Settings > Temperature > Nozzle.
+3. Use the LCD knob to dial the temperature up.
+4. Wait for the hot end to reach the desired temperature.
+5. Squeeze the extruder lever to release the grip on the filament, withdraw the filament, and remove the spool. You should rotate the knob clockwise to take out the filament.
+
+Now your hot end is free to accept a different filament.
+
+As a good practice, if your filament spool allows for it, loop the end of the filament into one of the holes on the edge of the spool so that it’s held in place for storage.
+
+#### Load the new filament
+
+Now that you have a free and clear extruder, it’s time to load the new filament of your choice.
+
+1. Take your filament out and cut a sharp angle on the end of the strand to help it enter the extruder. 
+2. Feed the new material into the extruder. 
+3. To feed the filament in, squeeze the extruder arm lever and place the filament in between the toothed extruder gear and the idler pulley.
+4. While still pressing the arm, push the filament through, slowly by hand. You can use the extruder knob and rotate it counter-clockwise.
+5. Push the new filament until you feel firm resistance. This means it has reached the nozzle.
+
+#### Purge the nozzle
+
+![IMAGE](./images/afbeelding5.png)
+
+Now that your new filament is at the nozzle, it’s time to feed it through. But, before you can start using the new filament, you must purge the old filament from the nozzle. This will ensure that the old filament is gone from the hot end and you will be printing only the new filament.
+
+It’s important to note that if you’re changing from a higher temperature material to a lower temperature material, you should set the nozzle temperature to the higher value until the purging is complete.
+
+Ender 3 printers have some features in their software to help purge the old filament, so it’s an easy and quick process.
+
+1. Click the LCD knob to open the settings menu and scroll to Move Axis > 1 mm > Extruder.
+2. Use the scroll to move the extruder axis 15 to 20 mm. The extruder will start feeding material through the nozzle, which purges the old filament and feeds in the new filament.
+3. You may want to do this more than once to ensure all of the old filament is out of the nozzle.
+
+The nozzle is purged once you see the new color or material flow out of the nozzle.
