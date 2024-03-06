@@ -27,7 +27,7 @@ And professionally relevant sources such as:
 
 * PROTOTYPING AND MODELMAKING FOR PRODUCT DESIGN by Bjarki Hallgrimsson (2012)
 * Prototyping for Physical and Digital Products by Kathryn McElroy (2016)
-* ...
+* [www.protolabs.com](https://www.protolabs.com/resources/blog/types-of-3d-printing/)
 
 ## License
 

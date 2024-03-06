@@ -5,7 +5,7 @@ import { path } from '@vuepress/utils'
 
 module.exports = {
   lang: 'en-US',
-  title: 'Course Introduction to Prototyping - Professional Bachelor Elektronica-ICT',
+  title: 'Course Introduction to Prototyping - Professional Bachelor Electronics-ICT',
   description: 'Course Introduction to Prototyping',
   
   theme: defaultTheme({
