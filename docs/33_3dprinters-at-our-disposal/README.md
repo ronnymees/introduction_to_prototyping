@@ -107,3 +107,11 @@ Ender 3 printers have some features in their software to help purge the old fila
 3. You may want to do this more than once to ensure all of the old filament is out of the nozzle.
 
 The nozzle is purged once you see the new color or material flow out of the nozzle.
+
+## Problem solving
+
+If you are having trouble with printing or the result has a poor print quality, then you can consult [this page](https://www.simplify3d.com/resources/print-quality-troubleshooting/) for guidance.
+
+:::danger 🔥Attention
+Never change settings on the 3D printers without first consulting your teacher!
+:::

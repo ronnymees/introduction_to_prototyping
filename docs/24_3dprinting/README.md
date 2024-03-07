@@ -122,7 +122,13 @@ Selecting the right process comes down to aligning the advantages and limitation
 
 ![IMAGE](./images/afbeelding1.png)
 
-## Tips for 3D printing
+## Design rules for 3D printed parts
 
-<!-- TODO: print voorwaarden naar modellering -->
+As with all producing methodes there are also some design rules you need to be aware off when it comes to 3D printing.
+
+![IMAGE](./images/afbeelding13.png)
+
+:::warning ❗Consult the teacher
+When the part you want to print will take up several hours printing time and/or a large amount of filament you should consult the teacher before starting the 3D printing proces.
+:::
 
