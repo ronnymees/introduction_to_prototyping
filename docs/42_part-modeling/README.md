@@ -17,7 +17,7 @@ Once you have a sketch you can use that to give it a certain with. Extrude can b
 
 #### Exercise
 
-<!-- TODO: het onderdeel op pg 35 van de cursus OP hier plaatsen -->
+![IMAGES](./images/afbeelding1.png)
 
 ### Revolve and hole
 
@@ -27,7 +27,9 @@ A hole is used to create drilled and/or tapped holes.
 
 #### Exercise
 
-<!-- TODO: de flens rechts boven op pg 42 van de cursus OP hier plaatsen maar met getapte gaten -->
+![IMAGES](./images/afbeelding2.png)
+
+Change 4 holes to M22 and 4 holes to Ø20 with counterbore Ø26x8.
 
 ### Round and chamfer
 
@@ -35,7 +37,7 @@ These functions are used respectively to provide a rounding or chamfer to edges.
 
 #### Excercise
 
-<!-- TODO: de bicycle rocker arm van de fusion 360 training hier plaatsen maar afgeronde randen en verzinking aan de boringen -->
+<!-- TODO: de bicycle rocker arm van de fusion 360 training tekening maken en hier plaatsen maar afgeronde randen en verzinking aan de boringen -->
 
 ## Organic parts
 
@@ -61,11 +63,11 @@ Let's import, scale an position this image in a new part.
 
 ## Sculpting from base form
 
-<!-- TODO: Een geschikt voorbeeld zoeken om hier te plaatsen -->
+<!-- TODO: Een geschikt voorbeeld zoeken om hier te plaatsen (handvat haardroger ?) -->
 
 ## Sculpting from splines and surfaces
 
-<!-- TODO: Een geschikt voorbeeld zoeken om hier te plaatsen -->
+<!-- TODO: Een geschikt voorbeeld zoeken om hier te plaatsen (fles) -->
 
 ## Export to STL
 

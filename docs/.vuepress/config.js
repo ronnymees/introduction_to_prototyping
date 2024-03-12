@@ -51,7 +51,7 @@ module.exports = {
           '/41_introduction-to-cad/README.md',          
           '/42_part-modeling/README.md',
           '/43_assembly-modeling/README.md',
-          '/44_export-to-machine/README.md',
+          '/44_drawing/README.md',
         ]
       },{
         text: 'Software',

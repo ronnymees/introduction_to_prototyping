@@ -109,7 +109,9 @@ We will draw this sketch on the XZ plane.
 
 We will draw this sketch on a plane with an offset of 50 from the XY plane.
 
-<!-- TODO: de schets op pg 33 van de cursus OP hier plaatsen -->
+![IMAGE](./images/afbeelding3.png)
+
+
 
 
 
