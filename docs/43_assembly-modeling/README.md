@@ -21,7 +21,13 @@ You should always double check the end result to make sure no issues remain. Cha
 
 ### Excercise
 
+<!-- TODO: screenshot van de samenstelling -->
+
 <!-- TODO: enkele onderdelen tekenen en een electronica print om die dan te gebruiken in een assembly -->
+<!-- TODO: link hieronder invullen -->
+* Download [this]() zip file and import all files to a new project.
+* Start a new file and save it, then drag your first part into this file, make it the ground part and save this file
+* Now you can add each part one by one and position it using constraints
 
 ## Part In-Place creation
 
@@ -37,8 +43,25 @@ Making changes to geometry of parts can result in errors in your assembly that w
 
 ### Excercise
 
-<!-- TODO: een microcontroller importeren van grabcad dan die gebruiken in een assembly en hiervoor een onderste van een case maken -->
+![IMAGE](./images/afbeelding2.png) 
+
+1. Base part
+   
+   * Download the Arduino Uno R3 from [GrabCad](https://grabcad.com/library/arduino-uno-r3-8) and unzip.
+   * Open the .step file and save.
+  
+2. Assembly
+   
+   * Start a new file and save it
+   * Drag the Arduino Uno part into it and make it the ground part
+  
+3. Create a new part in place
+
+   *  Create a new component, choose external and give your component a name.
+   *  Create a body bottom part that fits the arduino.
 
 ## Export to STEP
 
-
+With your assembly open, go to File > Export and select `*.step` as file type.
+Adjust your local directory if needed and click export.
+The job will be put in the job list.
