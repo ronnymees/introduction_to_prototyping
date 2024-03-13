@@ -37,7 +37,7 @@ These functions are used respectively to provide a rounding or chamfer to edges.
 
 #### Excercise
 
-<!-- TODO: de bicycle rocker arm van de fusion 360 training tekening maken en hier plaatsen maar afgeronde randen en verzinking aan de boringen -->
+![IMAGES](./images/afbeelding3.png)
 
 ## Organic parts
 
@@ -59,11 +59,17 @@ If we now want the image be on a specific position just click on Edit Canvas in 
 
 Let's import, scale an position this image in a new part.
 
-<!-- TODO: Een geschikte afbeelding zoeken om hier te plaatsen -->
+![IMAGES](./images/afbeelding4.png)
+
+This utility knife has a length of 180 mm.
 
 ## Sculpting from base form
 
-<!-- TODO: Een geschikt voorbeeld zoeken om hier te plaatsen (handvat haardroger ?) -->
+Now based on the imported image try to sculpt the model using a base form.
+
+![IMAGES](./images/afbeelding5.png)
+
+You can follow [these instructions](/files/sculpting_from_base_form.pdf) to complete this.
 
 ## Sculpting from splines and surfaces
 
