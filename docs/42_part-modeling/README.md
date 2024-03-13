@@ -73,7 +73,11 @@ You can follow [these instructions](/files/sculpting_from_base_form.pdf) to comp
 
 ## Sculpting from splines and surfaces
 
-<!-- TODO: Een geschikt voorbeeld zoeken om hier te plaatsen (fles) -->
+In this example a model is made from a handsketch by using splines and surfaces.
+
+![IMAGES](./images/afbeelding6.png)
+
+<YoutubeVideo videoId="8uVYv86-LfQ" />
 
 ## Export to STL
 
