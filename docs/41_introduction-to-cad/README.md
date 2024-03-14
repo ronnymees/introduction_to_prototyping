@@ -103,7 +103,7 @@ It is considered a good practice to create parts symectricaly around the origin.
 
 We will draw this sketch on the XZ plane.
 
-<!-- TODO: de schets mooi tekenen en inscannen en hier plaatsen -->
+![IMAGE](./images/afbeelding4.png)
 
 #### Excercise 2
 
