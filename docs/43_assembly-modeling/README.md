@@ -21,13 +21,14 @@ You should always double check the end result to make sure no issues remain. Cha
 
 ### Excercise
 
-<!-- TODO: screenshot van de samenstelling -->
+Let's make a assembly of a hexapod tibia, this is a subassembly used in the leg assembly of the hexapod.
 
-<!-- TODO: enkele onderdelen tekenen en een electronica print om die dan te gebruiken in een assembly -->
-<!-- TODO: link hieronder invullen -->
-* Download [this]() zip file and import all files to a new project.
-* Start a new file and save it, then drag your first part into this file, make it the ground part and save this file
-* Now you can add each part one by one and position it using constraints
+![IMAGE](./images/afbeelding3.png)
+
+* Download [this](/files/tibia_parts.zip) zip file and import all files to a new project.
+* Start a new file and save it, then drag your first part (the servo) into this file, make it the ground part and save this file
+* Now you can add each part one by one and position it using joints
+* Once all parts are in position you can start adding the fasteners with the Insert Fasteners tool. 
 
 ## Part In-Place creation
 
