@@ -99,6 +99,161 @@ Sketching is like drawing on a piece of paper, in CAD that paper is a plane or a
 It is considered a good practice to create parts symectricaly around the origin. This is advantageous when you use the parts in an assembly 
 :::
 
+#### Sketch tools
+
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Create panel</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="./images/polyline.png" alt="line icon"> Line (L)</td>
+<td>Create a series of lines. While using the <strong>Line</strong> tool, you can transition to the <strong>Tangent Arc</strong> tool by holding down the mouse button, and back to the <strong>Line</strong> tool, by releasing the mouse button.</td>
+</tr>
+<tr>
+<td>Rectangle</td>
+<td>As a skeleton for building more refined sketches.<ul><li><img src="./images/rectangle-2-point.png"> 2-Point Rectangle - creates a rectangle defined by two clicks in opposite corners of the rectangle. The sides of this rectangle are horizontal and vertical.</li><li><img src="./images/rectangle-3-point.png"> 3-Point Rectangle - creates rectangles that are at an angle. The first two points define the edge of the rectangle. The third point defines the width. All of the constraints added to this rectangle are parallel instead of vertical and horizontal, since this rectangle can be drawn at any angle.</li><li><img src="./images/rectangle-center.png"> Center Rectangle - draws a rectangle, with horizontal and vertical sides, based on a center point and a corner. This rectangle includes diagonal construction lines, to ensure that it is centered on the point used to create it.</li></ul></td>
+</tr>
+<tr>
+<td>Circle</td>
+<td>Create curved elements, and to aid in the creation of other entities that are drawn in a circular direction.<ul><li><img src="./images/circle-center-diameter.png"> Center Diameter Circle (C) - defines the circle location based on its center point. The first click places the center point and the second sets the diameter.</li><li><img src="./images/circle-2-point.png"> 2-Point Circle - creates a circle defined by two points that you position, and which set the diameter.</li><li><img src="./images/circle-3-point.png"> 3-Point Circle - positions the circle at three key points in a sketch. The first two points force the circle to pass through those points, and the third sets the diameter.</li><li><img src="./images/circle-2-tangent.png"> 2-Tangent Circle - creates a circle tangent to two lines that you select. As you move the cursor to change the diameter of the circle, the circle stays tangent to the lines even if it's not touching them. Click to place the third point for the circle.</li><li><img src="./images/circle-3-tangent.png"> 3-Tangent Circle - creates a circle defined by three lines that you select. </li></ul></td>
+</tr>
+<tr>
+<td>Arc</td>
+<td>Create detailed sketches of profiles that include curvature between two points or entities and general curved geometry.<ul><li><img src="./images/arc-3-point.png"> 3-Point Arc - connects two points with a curve. Place the two endpoints, move the mouse to change the radius of the arc and preview it, and click a third time to place the arc.</li><li><img src="./images/arc-center-point.png"> Center Point Arc - used to create concentric features using a common center point, for example, a cutout. Click to set the center point, click a second time to define the radius and the start of the arc, and click a third time to complete the arc. Repeat using the same center point, but a different radius, to create concentric arcs.</li><li><img src="./images/arc-tangent.png"> Tangent Arc - connects two sketch entities with a curve that is tangent to the first entity selected. The tangent arc command automatically adds a tangent constraint to the first point, but also adds one to the second point, if the two points are spaced appropriately.</li></ul></td>
+</tr>
+<tr>
+<td>Polygon</td>
+<td>Build sketches of multi-faceted geometry.<ul><li><img src="./images/polygon-circumscribed.png"> Circumscribed Polygon - uses the center point you select, the number of sides you specify, and the radius and orientation you define, to create a polygon. The radius defines the length from the center of the polygon to an <em>edge</em>.</li><li><img src="./images/polygon-inscribed.png"> Inscribed Polygon - uses the center point you select, the number of sides you specify, and the radius and orientation you define, to create a polygon. The radius defines the length from the center of the polygon to <em>a corner</em>.</li><li><img src="./images/polygon-edge.png"> Edge Polygon - creates a polygon based on the edge length and orientation you define, and the number of sides you specify.</li></ul></td>
+</tr>
+<tr>
+<td><img src="./images/circle-ellipse.png" alt="ellipse icon"> Ellipse</td>
+<td>Aid in the creation of non-circular, curved entities.</td>
+</tr>
+<tr>
+<td>Slot</td>
+<td>Create linear slots in 3D geometry.<ul><li><img src="./images/slot-center-center.png"> Center to Center Slot - creates a slot based on the center point of each arc, the distance between the two arc centers, and the arc radius or slot width.</li><li><img src="./images/slot-overall.png"> Overall Slot - uses the orientation, length, and width you provide to create a linear slot.</li><li><img src="./images/slot-center-point.png"> Center Point Slot - creates a slot based on the center point of the slot, the center point of the arcs, and the arc radius or slot width.</li></ul></td>
+</tr>
+<tr>
+<td><img src="./images/spline-fit-point.png" alt="fit point spline icon"> Fit Point Spline</td>
+<td>Create a free form curve that passes through a series of points.</td>
+</tr>
+<tr>
+<td><img src="./images/conic-curve.png" alt="conic curve icon"> Conic Curve</td>
+<td>Create a curve that is defined by two end points and a rho value. Rho determines if the curve is elliptical, parabolic, or hyperbolic.</td>
+</tr>
+<tr>
+<td><img src="./images/point.png" alt="point icon"> Point</td>
+<td>Position hole features, construction planes, axes, and to create sketch entities.</td>
+</tr>
+<tr>
+<td><img src="./images/mirror.png" alt="mirror icon"> Mirror</td>
+<td>Copy and flip sketch entities across a line of symmetry, with a relationship between the mirror and the original entity. To mirror bodies, use the <strong>Mirror</strong> command in the <strong>Create</strong> panel.</td>
+</tr>
+<tr>
+<td><img src="./images/pattern-circular.png" alt="circular pattern icon"> Circular Pattern</td>
+<td>Create a specified number of copies of sketch entities around a center point.</td>
+</tr>
+<tr>
+<td><img src="./images/pattern-rectangular.png" alt="rectangular pattern icon"> Rectangular Pattern</td>
+<td>Create copies of sketch entities with a specified spacing and number of instances.</td>
+</tr>
+<tr>
+<td>Project/Include</td>
+<td>Create sketch geometry from selected objects.<ul><li><img src="./images/project.png"> Project (P) - creates copies of existing model geometry and sketch entities in the active sketch.</li><li><img src="./images/intersect.png"> Intersect - creates sketch curves from the intersection of the selected objects and the plane of the active sketch.</li><li><img src="./images/include-3d-geometry.png"> Include 3D Geometry - projects faces, edges, and points into the active sketch, as 3D sketch geometry.</li><li><img src="./images/project-surface.png"> Project to Surface - creates a 3D sketch by projecting 2D sketch objects to BRep faces.</li><li><img src="./images/intersection-curve.png"> Intersection Curve - intersects 2D sketch geometry with faces or other 2D sketch geometry, to create a 3D sketch.</li></ul></td>
+</tr>
+<tr>
+<td><img src="./images/dimension.png" alt="sketch dimension icon"> Sketch Dimension (D)</td>
+<td>Control the size and position of sketch curves.</td>
+</tr>
+<tr>
+<td><strong>Modify panel</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="./images/fillet.png" alt="fillet icon"> Fillet</td>
+<td>Round corners and edges.</td>
+</tr>
+<tr>
+<td><img src="./images/trim.png" alt="trim icon"> Trim (T)</td>
+<td>Remove unwanted curved and linear line segments. If a sketch has elements that need to be extended, it is best to create the extensions first and trim away the unwanted segments after.<br><br>Note: Trimming sketch entities is not critical to create 3D features. They can be created from any closed-loop profile; however trimming all the extra lines will make the sketch more robust as well as more clearly defined.</td>
+</tr>
+<tr>
+<td><img src="./images/extend.png" alt="extend icon"> Extend</td>
+<td>Extend sketch elements, both curved and linear, so that they connect with other lines without having to re-sketch entire sections.</td>
+</tr>
+<tr>
+<td><img src="./images/break.png" alt="break icon"> Break</td>
+<td>Break curve entities into two or more sections.</td>
+</tr>
+<tr>
+<td><img src="./images/scale.png" alt="sketch scale icon"> Sketch Scale</td>
+<td>Enlarge or reduce a selected sketch geometry based on a specified scale factor.</td>
+</tr>
+<tr>
+<td><img src="./images/offset.png" alt="offset icon"> Offset (O)</td>
+<td>Create new sketch geometry from existing sketches or edges.</td>
+</tr>
+<tr>
+<td><img src="./images/move.png" alt="move/copy icon"> Move/Copy (M)</td>
+<td>Move or copy a face, body, sketch curve, component, or sketch geometry.</td>
+</tr>
+<tr>
+<td><strong>Constraints panel</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="./images/constraint-coincident.png" alt="coincident constraint icon"> Coincident</td>
+<td>Constrains the position of two points or a point and a line or curve together.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-collinear.png" alt="collinear constraint icon"> Collinear</td>
+<td>Constrains two or more objects so that they share a common line.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-concentric.png" alt="concentric constraint icon"> Concentric</td>
+<td>Constrains two or more arcs, circles, or ellipses to the same center point.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-midpoint.png" alt="midpoint constraint icon"> MidPoint</td>
+<td>Constrains a point or object to the midpoint of another object.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-fix.png" alt="fix constraint icon"> Fix/UnFix</td>
+<td>Locks the size and location of a point or object.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-parallel.png" alt="parallel constraint icon"> Parallel</td>
+<td>Constrains two lines so that they extend in the same direction and never intersect.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-perpendicular.png" alt="perpendicular constraint icon"> Perpendicular</td>
+<td>Constrains two objects so that they lie perpendicular (at a 90-degree angle) to each other.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-horiz-vert.png" alt="horizontal/vertical constraint icon"> Horizontal/Vertical</td>
+<td>Constrains a single line, or two points, to lie on either the horizontal or vertical axis, whichever is closer to the current alignment.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-tangent.png" alt="tangent constraint icon"> Tangent</td>
+<td>Constrains a curve and another object so that they touch at a single point but never cross each other.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-equal.png" alt="equal constraint"> Equal</td>
+<td>Constrains similar objects so that their sizes are identical. When the size of one object changes, the others adjust, too.</td>
+</tr>
+<tr>
+<td><img src="./images/constraint-symmetry.png" alt="symmetry constraint icon"> Symmetry</td>
+<td>Constrains two or more objects so that they are symmetrical (identical to each other in relation to a common axis).</td>
+</tr>
+</tbody></table>
+
 #### Excercise 1
 
 We will draw this sketch on the XZ plane.

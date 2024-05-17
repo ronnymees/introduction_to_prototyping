@@ -63,7 +63,7 @@ module.exports = {
       }
     ],
     sidebarDepth: 1,
-    repo: 'https://github.com/ronnymees/fullstackdevelopment_eoict',
+    repo: 'https://github.com/ronnymees/introduction_to_prototyping',
     docsDir: 'docs',
     docsBranch: 'master',
   }),

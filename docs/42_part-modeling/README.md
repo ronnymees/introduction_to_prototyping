@@ -10,6 +10,64 @@ There are a few diferent part drawing categories:
 ## Basic parts
 
 We will go over the most commen tools to create basic parts, if you need the more complex tools just ask the teacher or look for a tutorial online.
+First let's take a look at some of the tools we have.
+
+### Create tools for solid modeling
+
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="./images/create.png" alt="create sketch icon"> Create Sketch</td>
+<td>Start a sketch either on a blank document, or on the face of an existing 3D geometry. Click this to access the Sketch Tools.</td>
+</tr>
+<tr>
+<td><img src="./images/extrude.png" alt="extrude solid icon"> Extrude</td>
+<td>Extend the shape of a solid body, in a straight line.</td>
+</tr>
+<tr>
+<td><img src="./images/revolve.png" alt="revolve solid icon"> Revolve</td>
+<td>Extend the shape of a solid body, about an axis.</td>
+</tr>
+<tr>
+<td><img src="./images/sweep.png" alt="sweep solid icon"> Sweep</td>
+<td>Extend the shape of a solid body, along a defined path.</td>
+</tr>
+<tr>
+<td><img src="./images/rib.png" alt="rib icon"> Rib</td>
+<td>Add support to a model using a single line or curve that intersects with already created geometry. The curve must intersect with solid model geometry in both directions.</td>
+</tr>
+<tr>
+<td><img src="./images/hole.png" alt="hole icon"> Hole</td>
+<td>Create a hole through a solid body.</td>
+</tr>
+<tr>
+<td>More Solids</td>
+<td>Create solid bodies from sketches.<ul><li><img src="./images/loft.png"> Loft - connects two or more closed profiles by means of a smooth surface transition shape.</li><li><img src="./images/web.png"> Web - similar to the Rib tool, the Web tool creates geometry from open sketch curves that intersect with pre-existing bodies. The Web tool uses multiple curves to create several merged elements.</li><li><img src="./images/torus.png"> Torus - creates a solid body ring.</li><li><img src="./images/coil.png"> Coil - creates a solid coil.</li><li><img src="./images/pipe.png"> Pipe - creates a solid pipe.</li><li><img src="./images/thread.png"> Thread - adds real or cosmetic threads to your design. Cosmetic threads apply the appearance of threads. The Modeled option cuts actual threads into the geometry.</li></ul></td>
+</tr>
+<tr>
+<td>Pattern</td>
+<td>Create copies of faces, features, bodies, and components.<ul><li><img src="./images/pattern-rectangular.png"> Rectangular - creates copies of objects in one or two directions.</li><li><img src="./images/pattern-circular.png">Circular Pattern - creates copies of objects around a selected axis.</li><li><img src="./images/pattern-path.png">Pattern on Path - copies objects along a selected path, rather than following a circular or rectangular path.</li></ul></td>
+</tr>
+<tr>
+<td><img src="./images/mirror.png" alt="mirror solid icon"> Mirror</td>
+<td>Create a mirror image of faces, features, bodies, or whole components, on the opposite side of a face or plane.</td>
+</tr>
+<tr>
+<td><img src="./images/thicken.png" alt="thicken icon"> Thicken</td>
+<td>Create a solid by thickening a surface face.</td>
+</tr>
+<tr>
+<td><img src="./images/fluid-volume.png" alt="fluid volume icon"> Fluid Volume</td>
+<td>Create a body that either envelopes, or fills, the interior of the selected bodies.</td>
+</tr>
+</tbody></table>
+
 
 ### Extrude
 

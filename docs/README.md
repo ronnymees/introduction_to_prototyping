@@ -7,7 +7,7 @@ This course is still in development.
 ## Introduction
 
 This course is developed for PBA Electronics-ICT at [University College VIVES](https://www.vives.be/nl/technology/elektronica-ict).
-During this course you will learn ...
+During this course you will learn the basics of prototyping, modelmaking and Computer Aided Design, find information on using the prototyping lab.
 
 ## Content
 
