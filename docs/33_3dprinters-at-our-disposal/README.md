@@ -50,11 +50,12 @@ To be able to print our model we first have to slice that model in the printing 
 
 1. Select the correct 3D printer (You can add the printer if it's not in the list).
 2. Select the correct material and nozzle (Normaly this will be PLA and 0,4mm).
-3. Select the print quality (leave this at standard), the infill (normaly this is 20%, consultate the teacher if you want to change this), check support if needed.
+3. Select the print quality (leave this at standard, or create a new profile), use infill 20% Cubic for normal printing and 15% Lighting for fast prototyping. (consultate the teacher if you want to change to other settings), check support if needed.
 4. In `Custom` > `Material` check the settings for the temperature for the nozzle and bed, you can find the temperature range on a label on the filament roll.
-5. Next you can load the model file(s) and arange them on the printing bed.
-6. Once you are done you can hit Slice and the model will be sliced into the printing layers. Here you get the information on the printing time and used material.
-7. Save the produced G-code to the SD-card from the 3D printer.
+5. Use Brim for a better build plate adhesion.
+6. Next you can load the model file(s) and arange them on the printing bed.
+7. Once you are done you can hit Slice and the model will be sliced into the printing layers. Here you get the information on the printing time and used material, always write this in the log of the 3D printer when starting a 3D print.
+8. Save the produced G-code to the SD-card from the 3D printer.
 
 ## Printing your model
 
