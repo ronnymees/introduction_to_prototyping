@@ -24,6 +24,18 @@ Specifications:
 * Filament : 1,75mm
 * Nozzle : 0,4mm
 
+**Bambu Lab X1C 3D printer with AMS**
+
+![IMAGE](./images/afbeelding6.png)
+
+Specifications:
+* Build volume : w=256mm, l=256mm, h=256mm
+* Extruder heating : 300°C
+* Filament : 1,75mm
+* Nozzle : 0,4mm
+* Speed is up to 6x faster then normal 3D printer.
+
+
 :::warning ✋Attention
 Handle these devices with care. Make sure you know what you are doing, if you have doubts, ask the teacher for help!
 :::

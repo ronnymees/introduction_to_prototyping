@@ -59,6 +59,7 @@ module.exports = {
         children: [
           '/51_fusion360/README.md',          
           '/52_cura/README.md',          
+          '/53_bambustudio/README.md',          
         ]
       }
     ],
