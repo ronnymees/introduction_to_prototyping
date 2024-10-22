@@ -44,9 +44,9 @@ Handle these devices with care. Make sure you know what you are doing, if you ha
 
 When you use a 3D printer, then write it in the logbook so we can keep track of the use of the printers, schedule maintenance and order filament.
 
-| Name | File | Project | Filament | Print time |
+| Date | Name | Project or destination | Filament | Print time |
 | --- | --- | --- | --- | --- |
-| your name | the name of the file you print | The name of the project this is for | Color and meters | Printing time |
+| Date | your name | The name of the project this is for | Color, weight and meters | Printing time |
 
 ## Slicing your model
 
@@ -56,9 +56,11 @@ An STL file describes a raw, unstructured triangulated surface by the unit norma
 
 ![IMAGE](./images/afbeelding3.png)
 
-To be able to print our model we first have to slice that model in the printing layers. There are many programs that can do this for you but at school we use **Cura** from UltiMaker ([Install info](../52_cura/README.md)).
+To be able to print our model we first have to slice that model in the printing layers. 
 
-### Steps to take
+### Steps to take to slice for the Creality printers
+
+There are many programs that can do this for you but at school we use **Cura** from UltiMaker ([Install info](../52_cura/README.md)).
 
 1. Select the correct 3D printer (You can add the printer if it's not in the list).
 2. Select the correct material and nozzle (Normaly this will be PLA and 0,4mm).
@@ -69,7 +71,23 @@ To be able to print our model we first have to slice that model in the printing 
 7. Once you are done you can hit Slice and the model will be sliced into the printing layers. Here you get the information on the printing time and used material, always write this in the log of the 3D printer when starting a 3D print.
 8. Save the produced G-code to the SD-card from the 3D printer.
 
-## Printing your model
+### Steps to take to slice for the Bambu Lab printers
+
+Here we use the Bambu Studio software ([Install info](../53_bambustudio/README.md))
+
+1. In the tab `Prepare` select the X1 Carbon and the Textured PEI Plate.
+2. Change the material to your printing material ( for example Generic PLA, change the color by clicking on '1')
+   
+   ![IMAGE](./images/afbeelding7.png)
+
+3. Next you can load the model file(s) and arange them on the printing bed.
+4. If needed select support.
+5. Now hit the tab `Preview`, the model will be sliced.
+6. Open the pull-down menu `Print Plate` and select `Export plate sliced file` and hit it to save the file to the SD-card of the printer.
+
+## Printing your model 
+
+### Steps to take on the Creality printers.
 
 1. Insert the SD-card back into the 3D printer.
 2. Power on the printer.
@@ -78,9 +96,9 @@ To be able to print our model we first have to slice that model in the printing 
 5. The bed and nozzel will start to pre-heat to the set temperature.
 6. Once reached the printing starts.
 
-### Change loaded filament
+#### Change loaded filament
 
-#### Remove the filament currently loaded
+##### Remove the filament currently loaded
 
 ![IMAGE](./images/afbeelding4.png)
 
@@ -96,7 +114,7 @@ Now your hot end is free to accept a different filament.
 
 As a good practice, if your filament spool allows for it, loop the end of the filament into one of the holes on the edge of the spool so that it’s held in place for storage.
 
-#### Load the new filament
+##### Load the new filament
 
 Now that you have a free and clear extruder, it’s time to load the new filament of your choice.
 
@@ -106,7 +124,7 @@ Now that you have a free and clear extruder, it’s time to load the new filamen
 4. While still pressing the arm, push the filament through, slowly by hand. You can use the extruder knob and rotate it counter-clockwise.
 5. Push the new filament until you feel firm resistance. This means it has reached the nozzle.
 
-#### Purge the nozzle
+##### Purge the nozzle
 
 ![IMAGE](./images/afbeelding5.png)
 
@@ -121,6 +139,14 @@ Ender 3 printers have some features in their software to help purge the old fila
 3. You may want to do this more than once to ensure all of the old filament is out of the nozzle.
 
 The nozzle is purged once you see the new color or material flow out of the nozzle.
+
+### Steps to take on the Bambu Lab printers
+
+1. Insert the SD-card back into the 3D printer.
+2. Power on the printer.
+3. Load the correct filament in het AMS.
+4. Go to the **source** and select your model from the SD Card.
+5. Select the correct AMS spool and hit print.
 
 ## Problem solving
 
