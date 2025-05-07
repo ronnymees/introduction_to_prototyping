@@ -1,9 +1,5 @@
 # Introduction to Prototyping
 
-This course is still in development.
-
-![image](/files/construction.jpg)
-
 ## Introduction
 
 This course is developed for PBA Electronics-ICT at [University College VIVES](https://www.vives.be/nl/technology/elektronica-ict).

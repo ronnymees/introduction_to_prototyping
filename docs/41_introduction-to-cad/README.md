@@ -1,5 +1,10 @@
 # Introduction to CAD in Fusion 360
 
+> 🌐 Supporting learning material
+>
+> Autodesk Fusion learning: [Sketch Basics Tutorial](https://www.autodesk.com/learn/ondemand/curated/sketch-basics)
+
+
 Every product that is mass produced is at some stage of its development drawn in a Computer Aided Design (CAD) software. Once drawn in CAD changes can be made fairly quickly, with assembly's one can see how the parts fit and interact without having to make them first and several tests like strength, vibration, electrical, ... simulations can be done.
 
 ![IMAGE](./images/afbeelding1.png)

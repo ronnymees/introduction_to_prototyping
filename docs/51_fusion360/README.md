@@ -1,4 +1,7 @@
 # Fusion 360
+<!--
+
+This is the old way, it seems to have been changed...
 
 ## Register your Education-account with Autodesk
 
@@ -31,4 +34,28 @@ Folow these steps:
 
 * Download the installer [here](https://www.autodesk.com/products/fusion-360/appstream)
 
-<!-- TODO: de installatie doorlopen en kijken of hier extra info bij moet komen -->
+-->
+
+## Autodesk Educational Account
+
+* Surf to the [Education page of Autodesk](https://www.autodesk.com/education/edu-software/overview?sorting=featured&filters=individual) and hit `select` on the Fusion tile.
+* Choose Student and hit `select` again.
+* Fill in your student email address and hit `continue`.
+* Fill in your first and last name, your educational role (student) and your date of birth, then hit `continue`.
+* Fill in your school information and hit `continue`.
+
+![image](./images/afbeelding1.png)
+
+* To confirm your eligibility, hit `continue` and login with your KU Leuven Authenticator.
+
+![image](./images/afbeelding2.png)
+
+* The next screen you can close.
+
+## Install Fusion 360
+
+* Download the [installer](https://www.autodesk.com/products/fusion-360/appstream), start it up and just follow the installation process.
+* Once installed, start it up and you will get a wizzard.
+* Login using your Autodesk account you created (you will need to verify your email).
+* Create a team with a name of your choosing and then go to that team.
+

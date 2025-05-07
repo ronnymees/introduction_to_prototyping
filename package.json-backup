@@ -20,16 +20,9 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/ronnymees/introdcution_to_prototyping#readme",
-  "type": "module",
-    "devDependencies": {
-      "@vuepress/bundler-vite": "^2.0.0-rc.0",
-      "@vuepress/plugin-container": "^2.0.0-rc.0",
-      "@vuepress/plugin-register-components": "^2.0.0-rc.0",
-      "sass": "1.87.0",
-      "sass-embedded": "1.87.0",
-      "vuepress": "^2.0.0-rc.0"
-    },
-    "dependencies": {
-      "@vuepress/theme-default": "^2.0.0-rc.0"
-    }
+  "devDependencies": {
+    "@vuepress/plugin-container": "^2.0.0-beta.61",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.61",    
+    "vuepress": "^2.0.0-beta.61"
+  }
 }

@@ -1,10 +1,16 @@
 # Part modeling
 
+> 🌐 Supporting learning material
+>
+> Autodesk Fusion learning: [Part modeling Tutorial](https://www.autodesk.com/learn/ondemand/curated/part-modeling-fusion-360)<br>
+> Autodesk Fusion learning: [Mesh modeling Tutorial](https://www.autodesk.com/learn/ondemand/curated/mesh-modeling-with-fusion-360)<br>
+> Autodesk Fusion learning: [Conceptual modeling Tutorial](https://www.autodesk.com/learn/ondemand/curated/conceptual-modeling-fundamentals)
+
 Now that we know how to make sketches we can start creating parts. 
 
 There are a few diferent part drawing categories:
 * Basic parts
-* Organic parts
+* Organic parts 
 * Sheet metal parts (we won't be handeling this in this course)
 
 ## Basic parts
@@ -77,7 +83,7 @@ Once you have a sketch you can use that to give it a certain with. Extrude can b
 
 ![IMAGES](./images/afbeelding1.png)
 
-### Revolve and hole
+### Revolve, hole, round and chamfer
 
 A revolve is used to create a round part, you sketch the section of the part on one side of the axis and revolve it around that axis to get the part.
 
@@ -88,14 +94,15 @@ A hole is used to create drilled and/or tapped holes.
 ![IMAGES](./images/afbeelding2.png)
 
 Change 4 holes to M22 and 4 holes to Ø20 with counterbore Ø26x8.
+User round for the rounds on this part and add a chamfer to the inside bore on both sides.
 
-### Round and chamfer
+### Test your modeling skills
 
-These functions are used respectively to provide a rounding or chamfer to edges.
+Lets test our modeling skills and add a new function `pattern` to are toolset.
 
 #### Excercise
 
-![IMAGES](./images/afbeelding3.png)
+![IMAGES](./images/afbeelding7.png)
 
 ## Organic parts
 

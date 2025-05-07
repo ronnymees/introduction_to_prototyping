@@ -1,5 +1,11 @@
 # Drawing
 
+> 🌐 Supporting learning material
+>
+> Autodesk Fusion learning: [Intro to Fusion drawings Tutorial](https://www.autodesk.com/learn/ondemand/curated/intro-to-fusion-drawings)<br>
+> Autodesk Fusion learning: [Setting up drawing views in Fusion Tutorial](https://www.autodesk.com/learn/ondemand/curated/setting-up-views)<br>
+> Autodesk Fusion learning: [Annotating a drawing Tutorial](https://www.autodesk.com/learn/ondemand/curated/annotating-a-drawing)
+
 In the past, a technical drawing was necessary to produce a part. With today's technology, parts are more often produced based on the 3D model.
 The technical drawing is then used for quality control and during the setup of the manufacturing of serie production to control if the first parts are good.
 

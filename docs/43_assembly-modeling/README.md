@@ -1,5 +1,10 @@
 # Assembly modeling
 
+> 🌐 Supporting learning material
+>
+> Autodesk Fusion learning: [Mechanical assemblies fundamentals Tutorial](https://www.autodesk.com/learn/ondemand/curated/mechanical-assemblies-fundamentals)<br>
+> Autodesk Fusion learning: [Creating assemblies Tutorial](https://www.autodesk.com/learn/ondemand/curated/creating-assemblies)
+
 Assembly modeling is a technology and method used in CAD to represent multiple files that combined form a product or part of a product (also known as a subassembly).
 
 ![IMAGE](./images/afbeelding1.png)

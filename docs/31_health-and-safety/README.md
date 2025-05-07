@@ -3,6 +3,10 @@
 Modelmaking has the potential to expose students to hazardous materials, processes, and equipment. This includes, but is not limited to, mechanical
 machinery, sharp tools, dust, various materials and chemicals, noise, and fire hazards.
 
+::: warning 📋Safety instruction card
+If you are unfamiliar with a tool or appliance in the lab, always consult the **safety instruction card** before using it.
+:::
+
 ## Hazards
 
 Low-fidelity materials and processes generally require simple tools and can be carried out at the desktop. Other approaches require much more attention to
